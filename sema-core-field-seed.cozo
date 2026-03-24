@@ -1,0 +1,250 @@
+# Sema Core — Field Classifications
+# Maps every column of every sema-core relation to its scalar type.
+# scalar: domain | bool | int | data
+# target: Domain name (when scalar=domain), Measure formula (when scalar=int)
+# unit: Unit domain name (when scalar=int)
+
+# ═══════════════════════════════════════════════════════════════════════
+# PILLAR 1 — Phase & Dignity (no phase/dignity columns — they ARE those)
+# ═══════════════════════════════════════════════════════════════════════
+
+?[relation, column, scalar, target, unit, description, phase, dignity] <- [
+  ["Phase", "name", "data", "", "", "Phase variant name", "manifest", "eternal"],
+  ["Phase", "glyph", "data", "", "", "Unicode glyph", "manifest", "eternal"],
+  ["Phase", "in_world_hash", "bool", "", "", "Whether included in world hash", "manifest", "eternal"],
+  ["Phase", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+
+  ["Dignity", "name", "data", "", "", "Dignity variant name", "manifest", "eternal"],
+  ["Dignity", "rank", "int", "L", "PositionUnit", "Trust ordering (0=highest)", "manifest", "eternal"],
+  ["Dignity", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+]
+:put field { relation, column => scalar, target, unit, description, phase, dignity }
+
+# ═══════════════════════════════════════════════════════════════════════
+# META — Domain, Functor, morphism
+# ═══════════════════════════════════════════════════════════════════════
+
+?[relation, column, scalar, target, unit, description, phase, dignity] <- [
+  ["Domain", "name", "data", "", "", "Domain name", "manifest", "eternal"],
+  ["Domain", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["Domain", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Domain", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Functor", "name", "data", "", "", "Functor variant name", "manifest", "eternal"],
+  ["Functor", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["Functor", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Functor", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["morphism", "source", "domain", "Domain", "", "Source domain", "manifest", "eternal"],
+  ["morphism", "target", "domain", "Domain", "", "Target domain", "manifest", "eternal"],
+  ["morphism", "via", "data", "", "", "Morphism name/role", "manifest", "eternal"],
+  ["morphism", "functor", "domain", "Functor", "", "Mapping type", "manifest", "eternal"],
+  ["morphism", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["morphism", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["morphism", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+]
+:put field { relation, column => scalar, target, unit, description, phase, dignity }
+
+# ═══════════════════════════════════════════════════════════════════════
+# PILLAR 2 — Astrality domains
+# Standard pattern: name=data, description=data, phase=Phase, dignity=Dignity
+# Plus domain-specific columns
+# ═══════════════════════════════════════════════════════════════════════
+
+?[relation, column, scalar, target, unit, description, phase, dignity] <- [
+  ["Element", "name", "data", "", "", "Element name", "manifest", "eternal"],
+  ["Element", "description", "data", "", "", "Qualitative meaning", "manifest", "eternal"],
+  ["Element", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Element", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Modality", "name", "data", "", "", "Modality name", "manifest", "eternal"],
+  ["Modality", "description", "data", "", "", "Qualitative meaning", "manifest", "eternal"],
+  ["Modality", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Modality", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Sign", "name", "data", "", "", "Sign name", "manifest", "eternal"],
+  ["Sign", "glyph", "data", "", "", "Unicode glyph", "manifest", "eternal"],
+  ["Sign", "element", "domain", "Element", "", "Classical element", "manifest", "eternal"],
+  ["Sign", "modality", "domain", "Modality", "", "Cardinal/fixed/mutable", "manifest", "eternal"],
+  ["Sign", "house", "int", "L", "PositionUnit", "Natural house number", "manifest", "eternal"],
+  ["Sign", "ruler", "domain", "Planet", "", "Domicile ruler", "manifest", "eternal"],
+  ["Sign", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Sign", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Planet", "name", "data", "", "", "Planet name", "manifest", "eternal"],
+  ["Planet", "glyph", "data", "", "", "Unicode glyph", "manifest", "eternal"],
+  ["Planet", "stage", "int", "L", "PositionUnit", "Young process stage", "manifest", "eternal"],
+  ["Planet", "freedom", "int", "ML/T²", "CountUnit", "Degrees of freedom", "manifest", "eternal"],
+  ["Planet", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Planet", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Measure", "sign", "domain", "Sign", "", "Zodiacal sign", "manifest", "eternal"],
+  ["Measure", "formula", "data", "", "", "Dimensional formula (L, M, T)", "manifest", "eternal"],
+  ["Measure", "element", "domain", "Element", "", "Inherited element", "manifest", "eternal"],
+  ["Measure", "modality", "domain", "Modality", "", "Inherited modality", "manifest", "eternal"],
+  ["Measure", "dimension", "domain", "Dimension", "", "Named dimension", "manifest", "eternal"],
+  ["Measure", "physical", "data", "", "", "Physical quantity name", "manifest", "eternal"],
+  ["Measure", "psychological", "data", "", "", "Psychological correlate", "manifest", "eternal"],
+  ["Measure", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Measure", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Dimension", "name", "data", "", "", "Dimension name", "manifest", "eternal"],
+  ["Dimension", "description", "data", "", "", "Derivative order description", "manifest", "eternal"],
+  ["Dimension", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Dimension", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["House", "name", "data", "", "", "House ordinal", "manifest", "eternal"],
+  ["House", "natural_sign", "domain", "Sign", "", "Natural zodiacal sign", "manifest", "eternal"],
+  ["House", "element", "domain", "Element", "", "Inherited element", "manifest", "eternal"],
+  ["House", "modality", "domain", "Modality", "", "Angular/succedent/cadent", "manifest", "eternal"],
+  ["House", "dimension", "domain", "Dimension", "", "Young dimension mapping", "manifest", "eternal"],
+  ["House", "description", "data", "", "", "Life area description", "manifest", "eternal"],
+  ["House", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["House", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Aspect", "name", "data", "", "", "Aspect name", "manifest", "eternal"],
+  ["Aspect", "degrees", "int", "L", "PositionUnit", "Angular separation", "manifest", "eternal"],
+  ["Aspect", "nature", "domain", "AspectNature", "", "Qualitative nature", "manifest", "eternal"],
+  ["Aspect", "description", "data", "", "", "Meaning", "manifest", "eternal"],
+  ["Aspect", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Aspect", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["AspectNature", "name", "data", "", "", "Nature variant", "manifest", "eternal"],
+  ["AspectNature", "description", "data", "", "", "Qualitative meaning", "manifest", "eternal"],
+  ["AspectNature", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["AspectNature", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Decan", "name", "data", "", "", "Decan identifier", "manifest", "eternal"],
+  ["Decan", "sign", "domain", "Sign", "", "Parent sign", "manifest", "eternal"],
+  ["Decan", "ruler", "domain", "Planet", "", "Chaldean ruler", "manifest", "eternal"],
+  ["Decan", "ordinal", "int", "L", "PositionUnit", "Position 1-36", "manifest", "eternal"],
+  ["Decan", "description", "data", "", "", "Decan description", "manifest", "eternal"],
+  ["Decan", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Decan", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Rulership", "sign", "domain", "Sign", "", "Zodiacal sign", "manifest", "eternal"],
+  ["Rulership", "planet", "domain", "Planet", "", "Planet", "manifest", "eternal"],
+  ["Rulership", "dignity_type", "domain", "DignityType", "", "Dignity classification", "manifest", "eternal"],
+  ["Rulership", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Rulership", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["DignityType", "name", "data", "", "", "Dignity type variant", "manifest", "eternal"],
+  ["DignityType", "description", "data", "", "", "Meaning", "manifest", "eternal"],
+  ["DignityType", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["DignityType", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Sect", "name", "data", "", "", "Sect variant", "manifest", "eternal"],
+  ["Sect", "luminary", "domain", "Planet", "", "Sect luminary", "manifest", "eternal"],
+  ["Sect", "description", "data", "", "", "Meaning", "manifest", "eternal"],
+  ["Sect", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Sect", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Condition", "name", "data", "", "", "Condition variant", "manifest", "eternal"],
+  ["Condition", "description", "data", "", "", "Meaning", "manifest", "eternal"],
+  ["Condition", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Condition", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+]
+:put field { relation, column => scalar, target, unit, description, phase, dignity }
+
+# ═══════════════════════════════════════════════════════════════════════
+# PILLAR 3 — Structure domains + schema + field + units
+# ═══════════════════════════════════════════════════════════════════════
+
+?[relation, column, scalar, target, unit, description, phase, dignity] <- [
+  ["Type", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Type", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["Type", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Type", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Scalar", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Scalar", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["Scalar", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Scalar", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Cardinality", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Cardinality", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["Cardinality", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Cardinality", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["Direction", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Direction", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["Direction", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Direction", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["field", "relation", "data", "", "", "Relation name", "manifest", "eternal"],
+  ["field", "column", "data", "", "", "Column name", "manifest", "eternal"],
+  ["field", "scalar", "domain", "Scalar", "", "What leaf scalar this field carries", "manifest", "eternal"],
+  ["field", "target", "data", "", "", "Domain name or Measure formula", "manifest", "eternal"],
+  ["field", "unit", "data", "", "", "Unit domain name", "manifest", "eternal"],
+  ["field", "description", "data", "", "", "Human-readable description", "manifest", "eternal"],
+  ["field", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["field", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["schema_entry", "schema", "data", "", "", "Content-addressed schema identifier", "manifest", "eternal"],
+  ["schema_entry", "name", "data", "", "", "Entry identifier", "manifest", "eternal"],
+  ["schema_entry", "structure", "domain", "Type", "", "Structural form", "manifest", "eternal"],
+  ["schema_entry", "ordinal", "int", "L", "PositionUnit", "Position in schema", "manifest", "eternal"],
+  ["schema_entry", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_entry", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["schema_field", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_field", "owner", "data", "", "", "Owning entry", "manifest", "eternal"],
+  ["schema_field", "name", "data", "", "", "Field identifier", "manifest", "eternal"],
+  ["schema_field", "structure", "domain", "Type", "", "Structural form", "manifest", "eternal"],
+  ["schema_field", "target", "data", "", "", "Reference", "manifest", "eternal"],
+  ["schema_field", "ordinal", "int", "L", "PositionUnit", "Capnp ordinal", "manifest", "eternal"],
+  ["schema_field", "cardinality", "domain", "Cardinality", "", "Field multiplicity", "manifest", "eternal"],
+  ["schema_field", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_field", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["schema_variant", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_variant", "owner", "data", "", "", "Owning enum entry", "manifest", "eternal"],
+  ["schema_variant", "name", "data", "", "", "Variant identifier", "manifest", "eternal"],
+  ["schema_variant", "ordinal", "int", "L", "PositionUnit", "Capnp discriminant", "manifest", "eternal"],
+  ["schema_variant", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_variant", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["schema_method", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_method", "interface", "data", "", "", "Interface identifier", "manifest", "eternal"],
+  ["schema_method", "name", "data", "", "", "Method identifier", "manifest", "eternal"],
+  ["schema_method", "ordinal", "int", "L", "PositionUnit", "Method ordinal", "manifest", "eternal"],
+  ["schema_method", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_method", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["schema_param", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_param", "interface", "data", "", "", "Interface identifier", "manifest", "eternal"],
+  ["schema_param", "method", "data", "", "", "Method identifier", "manifest", "eternal"],
+  ["schema_param", "name", "data", "", "", "Parameter identifier", "manifest", "eternal"],
+  ["schema_param", "direction", "domain", "Direction", "", "Request or response", "manifest", "eternal"],
+  ["schema_param", "structure", "domain", "Type", "", "Structural form", "manifest", "eternal"],
+  ["schema_param", "target", "data", "", "", "Reference", "manifest", "eternal"],
+  ["schema_param", "ordinal", "int", "L", "PositionUnit", "Parameter ordinal", "manifest", "eternal"],
+  ["schema_param", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_param", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["measure_unit", "measure", "data", "", "", "Measure formula", "manifest", "eternal"],
+  ["measure_unit", "unit", "domain", "Domain", "", "Unit domain name", "manifest", "eternal"],
+  ["measure_unit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["measure_unit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["TimeUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["TimeUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["TimeUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["TimeUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["PositionUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["PositionUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["PositionUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["PositionUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["CountUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["CountUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["CountUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["CountUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+
+  ["SizeUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["SizeUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["SizeUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["SizeUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "eternal"],
+]
+:put field { relation, column => scalar, target, unit, description, phase, dignity }
