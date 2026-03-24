@@ -13,11 +13,11 @@
 :put Phase { name => glyph, in_world_hash, description }
 
 ?[name, rank, description] <- [
-  ["eternal", 0, "Immutable, foundational invariant (nitya)"],
-  ["proven", 1, "Verified through trusted source (siddha)"],
-  ["seen", 2, "Witnessed, observed — default (drishta)"],
-  ["uncertain", 3, "Unverified claim (sandeha)"],
-  ["delusion", 4, "Error, unreliable source (bhrama)"],
+  ["akasha", 0, "Space — dwelling, full authority. Trust: eternal (nitya). Placement: domicile. Lifecycle: manifest."],
+  ["vayu", 1, "Air — insight, precision. Trust: proven (siddha). Placement: exaltation. Lifecycle: established."],
+  ["tejas", 2, "Fire — affinity, recognition. Trust: seen (drishta). Placement: triplicity. Lifecycle: becoming."],
+  ["apas", 3, "Water — resonance, unfixed. Trust: uncertain (sandeha). Placement: bound. Lifecycle: waning."],
+  ["prithvi", 4, "Earth — surface, bare contact. Trust: delusion (bhrama). Placement: face. Lifecycle: retired."],
 ]
 :put Dignity { name => rank, description }
 
@@ -26,39 +26,38 @@
 # ═══════════════════════════════════════════════════════════════════════
 
 ?[name, description, phase, dignity] <- [
-  ["Phase", "Lifecycle tri-state: manifest/becoming/retired", "manifest", "eternal"],
-  ["Dignity", "Epistemological trust hierarchy", "manifest", "eternal"],
-  ["Domain", "Registry of all controlled vocabularies", "manifest", "eternal"],
-  ["Functor", "How things map — deterministic, bijective, tradition_dependent", "manifest", "eternal"],
-  ["Element", "Four classical elements — fire/water/air/earth", "manifest", "eternal"],
-  ["Modality", "Three modalities — cardinal/fixed/mutable", "manifest", "eternal"],
-  ["Sign", "Twelve zodiacal signs", "manifest", "eternal"],
-  ["Planet", "Seven classical planets", "manifest", "eternal"],
-  ["Measure", "Twelve measure formulae — Young Geometry of Meaning", "manifest", "eternal"],
-  ["Dimension", "Twelve physics dimensions from Young", "manifest", "eternal"],
-  ["House", "Twelve topical houses — areas of life experience", "manifest", "eternal"],
-  ["Aspect", "Geometric relationships between signs", "manifest", "eternal"],
-  ["AspectNature", "Qualitative nature of geometric aspects", "manifest", "eternal"],
-  ["Decan", "Thirty-six 10-degree divisions of the zodiac", "manifest", "eternal"],
-  ["Rulership", "Planet-Sign dignity assignments", "manifest", "eternal"],
-  ["DignityType", "Essential dignity classification — domicile/exaltation/detriment/fall", "manifest", "eternal"],
-  ["Sect", "Diurnal-nocturnal binary division", "manifest", "eternal"],
-  ["Condition", "Planetary astronomical conditions", "manifest", "eternal"],
-  ["Type", "Structural form of a type — Sowa lattice atoms", "manifest", "eternal"],
-  ["Scalar", "What leaf scalar a field carries", "manifest", "eternal"],
-  ["Cardinality", "Field multiplicity", "manifest", "eternal"],
-  ["Direction", "Which way data flows — request/response", "manifest", "eternal"],
-  ["TimeUnit", "Unit of time measurement", "manifest", "eternal"],
-  ["PositionUnit", "Unit of positional measurement", "manifest", "eternal"],
-  ["CountUnit", "Unit of counting", "manifest", "eternal"],
-  ["SizeUnit", "Unit of data size", "manifest", "eternal"],
+  ["Phase", "Lifecycle tri-state: manifest/becoming/retired", "manifest", "akasha"],
+  ["Dignity", "Quality of fitness — Pancha Tattva (5 elements as 5 quality levels)", "manifest", "akasha"],
+  ["Domain", "Registry of all controlled vocabularies", "manifest", "akasha"],
+  ["Functor", "How things map — deterministic, bijective, tradition_dependent", "manifest", "akasha"],
+  ["Element", "Four classical elements — fire/water/air/earth", "manifest", "akasha"],
+  ["Modality", "Three modalities — cardinal/fixed/mutable", "manifest", "akasha"],
+  ["Sign", "Twelve zodiacal signs", "manifest", "akasha"],
+  ["Planet", "Seven classical planets", "manifest", "akasha"],
+  ["Measure", "Twelve measure formulae — Young Geometry of Meaning", "manifest", "akasha"],
+  ["Dimension", "Twelve physics dimensions from Young", "manifest", "akasha"],
+  ["House", "Twelve topical houses — areas of life experience", "manifest", "akasha"],
+  ["Aspect", "Geometric relationships between signs", "manifest", "akasha"],
+  ["AspectNature", "Qualitative nature of geometric aspects", "manifest", "akasha"],
+  ["Decan", "Thirty-six 10-degree divisions of the zodiac", "manifest", "akasha"],
+  ["Rulership", "Planet-Sign dignity assignments — unified via Pancha Tattva", "manifest", "akasha"],
+  ["Sect", "Diurnal-nocturnal binary division", "manifest", "akasha"],
+  ["Condition", "Planetary astronomical conditions", "manifest", "akasha"],
+  ["Type", "Structural form of a type — Sowa lattice atoms", "manifest", "akasha"],
+  ["Scalar", "What leaf scalar a field carries", "manifest", "akasha"],
+  ["Cardinality", "Field multiplicity", "manifest", "akasha"],
+  ["Direction", "Which way data flows — request/response", "manifest", "akasha"],
+  ["TimeUnit", "Unit of time measurement", "manifest", "akasha"],
+  ["PositionUnit", "Unit of positional measurement", "manifest", "akasha"],
+  ["CountUnit", "Unit of counting", "manifest", "akasha"],
+  ["SizeUnit", "Unit of data size", "manifest", "akasha"],
 ]
 :put Domain { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["deterministic", "Exactly one output for each input", "manifest", "eternal"],
-  ["bijective", "One-to-one and onto — reversible", "manifest", "eternal"],
-  ["tradition_dependent", "Mapping varies by tradition or context", "manifest", "eternal"],
+  ["deterministic", "Exactly one output for each input", "manifest", "akasha"],
+  ["bijective", "One-to-one and onto — reversible", "manifest", "akasha"],
+  ["tradition_dependent", "Mapping varies by tradition or context", "manifest", "akasha"],
 ]
 :put Functor { name => description, phase, dignity }
 
@@ -69,240 +68,235 @@
 # ─── Element ─────────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["fire", "Identity, will, spirit — what IS", "manifest", "eternal"],
-  ["earth", "Body, matter, manifestation — what ENDURES", "manifest", "eternal"],
-  ["air", "Thought, mind, relationship — what RELATES", "manifest", "eternal"],
-  ["water", "Feeling, soul, transformation — what MOVES", "manifest", "eternal"],
+  ["fire", "Identity, will, spirit — what IS", "manifest", "akasha"],
+  ["earth", "Body, matter, manifestation — what ENDURES", "manifest", "akasha"],
+  ["air", "Thought, mind, relationship — what RELATES", "manifest", "akasha"],
+  ["water", "Feeling, soul, transformation — what MOVES", "manifest", "akasha"],
 ]
 :put Element { name => description, phase, dignity }
 
 # ─── Modality ────────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["cardinal", "Initiating, directive — the HOW (acceleration, change)", "manifest", "eternal"],
-  ["fixed", "Sustaining, concentrative — the WHAT (persistence, form)", "manifest", "eternal"],
-  ["mutable", "Adaptable, distributive — the WHY (motive, context)", "manifest", "eternal"],
+  ["cardinal", "Initiating, directive — the HOW (acceleration, change)", "manifest", "akasha"],
+  ["fixed", "Sustaining, concentrative — the WHAT (persistence, form)", "manifest", "akasha"],
+  ["mutable", "Adaptable, distributive — the WHY (motive, context)", "manifest", "akasha"],
 ]
 :put Modality { name => description, phase, dignity }
 
 # ─── Sign ────────────────────────────────────────────────────────────
 
 ?[name, glyph, element, modality, house, ruler, phase, dignity] <- [
-  ["aries", "♈", "fire", "cardinal", 1, "mars", "manifest", "proven"],
-  ["taurus", "♉", "earth", "fixed", 2, "venus", "manifest", "proven"],
-  ["gemini", "♊", "air", "mutable", 3, "mercury", "manifest", "proven"],
-  ["cancer", "♋", "water", "cardinal", 4, "moon", "manifest", "proven"],
-  ["leo", "♌", "fire", "fixed", 5, "sun", "manifest", "proven"],
-  ["virgo", "♍", "earth", "mutable", 6, "mercury", "manifest", "proven"],
-  ["libra", "♎", "air", "cardinal", 7, "venus", "manifest", "proven"],
-  ["scorpio", "♏", "water", "fixed", 8, "mars", "manifest", "proven"],
-  ["sagittarius", "♐", "fire", "mutable", 9, "jupiter", "manifest", "proven"],
-  ["capricorn", "♑", "earth", "cardinal", 10, "saturn", "manifest", "proven"],
-  ["aquarius", "♒", "air", "fixed", 11, "saturn", "manifest", "proven"],
-  ["pisces", "♓", "water", "mutable", 12, "jupiter", "manifest", "proven"],
+  ["aries", "♈", "fire", "cardinal", 1, "mars", "manifest", "vayu"],
+  ["taurus", "♉", "earth", "fixed", 2, "venus", "manifest", "vayu"],
+  ["gemini", "♊", "air", "mutable", 3, "mercury", "manifest", "vayu"],
+  ["cancer", "♋", "water", "cardinal", 4, "moon", "manifest", "vayu"],
+  ["leo", "♌", "fire", "fixed", 5, "sun", "manifest", "vayu"],
+  ["virgo", "♍", "earth", "mutable", 6, "mercury", "manifest", "vayu"],
+  ["libra", "♎", "air", "cardinal", 7, "venus", "manifest", "vayu"],
+  ["scorpio", "♏", "water", "fixed", 8, "mars", "manifest", "vayu"],
+  ["sagittarius", "♐", "fire", "mutable", 9, "jupiter", "manifest", "vayu"],
+  ["capricorn", "♑", "earth", "cardinal", 10, "saturn", "manifest", "vayu"],
+  ["aquarius", "♒", "air", "fixed", 11, "saturn", "manifest", "vayu"],
+  ["pisces", "♓", "water", "mutable", 12, "jupiter", "manifest", "vayu"],
 ]
 :put Sign { name => glyph, element, modality, house, ruler, phase, dignity }
 
 # ─── Planet ──────────────────────────────────────────────────────────
 
 ?[name, glyph, stage, freedom, phase, dignity] <- [
-  ["sun", "☉", 1, 3, "manifest", "eternal"],
-  ["moon", "☽", 2, 2, "manifest", "eternal"],
-  ["mars", "♂", 3, 1, "manifest", "eternal"],
-  ["saturn", "♄", 4, 0, "manifest", "eternal"],
-  ["mercury", "☿", 5, 1, "manifest", "eternal"],
-  ["jupiter", "♃", 6, 2, "manifest", "eternal"],
-  ["venus", "♀", 6, 2, "manifest", "eternal"],
+  ["sun", "☉", 1, 3, "manifest", "akasha"],
+  ["moon", "☽", 2, 2, "manifest", "akasha"],
+  ["mars", "♂", 3, 1, "manifest", "akasha"],
+  ["saturn", "♄", 4, 0, "manifest", "akasha"],
+  ["mercury", "☿", 5, 1, "manifest", "akasha"],
+  ["jupiter", "♃", 6, 2, "manifest", "akasha"],
+  ["venus", "♀", 6, 2, "manifest", "akasha"],
 ]
 :put Planet { name => glyph, stage, freedom, phase, dignity }
 
 # ─── Measure (Young's Rosetta Stone) ─────────────────────────────────
 
 ?[sign, formula, element, modality, dimension, physical, psychological, phase, dignity] <- [
-  ["aries", "L/T²", "fire", "cardinal", "acceleration", "Acceleration", "Blind action", "manifest", "proven"],
-  ["taurus", "ML/T³", "earth", "fixed", "mass_control", "Mass control", "Establishment", "manifest", "proven"],
-  ["gemini", "ML²/T³", "air", "mutable", "power", "Power", "Knowledge", "manifest", "proven"],
-  ["cancer", "L/T", "water", "cardinal", "velocity", "Velocity", "Change", "manifest", "proven"],
-  ["leo", "ML/T²", "fire", "fixed", "force", "Force", "Being, identity", "manifest", "proven"],
-  ["virgo", "ML²/T²", "earth", "mutable", "energy", "Energy", "Work, fact", "manifest", "proven"],
-  ["libra", "L", "air", "cardinal", "position", "Position", "Observation", "manifest", "proven"],
-  ["scorpio", "ML/T", "water", "fixed", "momentum", "Momentum", "Transformation", "manifest", "proven"],
-  ["sagittarius", "ML²/T", "fire", "mutable", "action", "Action", "Hunch, intuition", "manifest", "proven"],
-  ["capricorn", "L/T³", "earth", "cardinal", "control", "Control", "Control, mastery", "manifest", "proven"],
-  ["aquarius", "ML", "air", "fixed", "moment", "Moment (of inertia)", "Significance", "manifest", "proven"],
-  ["pisces", "ML²", "water", "mutable", "inertia", "Moment of inertia", "Belief, surrender", "manifest", "proven"],
+  ["aries", "L/T²", "fire", "cardinal", "acceleration", "Acceleration", "Blind action", "manifest", "vayu"],
+  ["taurus", "ML/T³", "earth", "fixed", "mass_control", "Mass control", "Establishment", "manifest", "vayu"],
+  ["gemini", "ML²/T³", "air", "mutable", "power", "Power", "Knowledge", "manifest", "vayu"],
+  ["cancer", "L/T", "water", "cardinal", "velocity", "Velocity", "Change", "manifest", "vayu"],
+  ["leo", "ML/T²", "fire", "fixed", "force", "Force", "Being, identity", "manifest", "vayu"],
+  ["virgo", "ML²/T²", "earth", "mutable", "energy", "Energy", "Work, fact", "manifest", "vayu"],
+  ["libra", "L", "air", "cardinal", "position", "Position", "Observation", "manifest", "vayu"],
+  ["scorpio", "ML/T", "water", "fixed", "momentum", "Momentum", "Transformation", "manifest", "vayu"],
+  ["sagittarius", "ML²/T", "fire", "mutable", "action", "Action", "Hunch, intuition", "manifest", "vayu"],
+  ["capricorn", "L/T³", "earth", "cardinal", "control", "Control", "Control, mastery", "manifest", "vayu"],
+  ["aquarius", "ML", "air", "fixed", "moment", "Moment (of inertia)", "Significance", "manifest", "vayu"],
+  ["pisces", "ML²", "water", "mutable", "inertia", "Moment of inertia", "Belief, surrender", "manifest", "vayu"],
 ]
 :put Measure { sign => formula, element, modality, dimension, physical, psychological, phase, dignity }
 
 # ─── Dimension ───────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["position", "0th order — where something IS", "manifest", "eternal"],
-  ["velocity", "1st order — rate of change of position", "manifest", "eternal"],
-  ["acceleration", "2nd order — rate of change of velocity", "manifest", "eternal"],
-  ["control", "3rd order — rate of change of acceleration", "manifest", "eternal"],
-  ["moment", "0th order with mass — significance", "manifest", "eternal"],
-  ["momentum", "1st order with mass — impetus", "manifest", "eternal"],
-  ["force", "2nd order with mass — push/pull", "manifest", "eternal"],
-  ["mass_control", "3rd order with mass — power over matter", "manifest", "eternal"],
-  ["action", "1st order angular — quantum of action", "manifest", "eternal"],
-  ["energy", "2nd order angular — capacity to do work", "manifest", "eternal"],
-  ["power", "3rd order angular — rate of energy transfer", "manifest", "eternal"],
-  ["inertia", "0th order with mass and length squared — resistance to change", "manifest", "eternal"],
+  ["position", "0th order — where something IS", "manifest", "akasha"],
+  ["velocity", "1st order — rate of change of position", "manifest", "akasha"],
+  ["acceleration", "2nd order — rate of change of velocity", "manifest", "akasha"],
+  ["control", "3rd order — rate of change of acceleration", "manifest", "akasha"],
+  ["moment", "0th order with mass — significance", "manifest", "akasha"],
+  ["momentum", "1st order with mass — impetus", "manifest", "akasha"],
+  ["force", "2nd order with mass — push/pull", "manifest", "akasha"],
+  ["mass_control", "3rd order with mass — power over matter", "manifest", "akasha"],
+  ["action", "1st order angular — quantum of action", "manifest", "akasha"],
+  ["energy", "2nd order angular — capacity to do work", "manifest", "akasha"],
+  ["power", "3rd order angular — rate of energy transfer", "manifest", "akasha"],
+  ["inertia", "0th order with mass and length squared — resistance to change", "manifest", "akasha"],
 ]
 :put Dimension { name => description, phase, dignity }
 
 # ─── House ───────────────────────────────────────────────────────────
 
 ?[name, natural_sign, element, modality, dimension, description, phase, dignity] <- [
-  ["1st", "aries", "fire", "cardinal", "acceleration", "Self, body, appearance, beginnings", "manifest", "eternal"],
-  ["2nd", "taurus", "earth", "fixed", "mass_control", "Resources, values, possessions", "manifest", "eternal"],
-  ["3rd", "gemini", "air", "mutable", "power", "Communication, siblings, local travel", "manifest", "eternal"],
-  ["4th", "cancer", "water", "cardinal", "velocity", "Home, family, roots, endings", "manifest", "eternal"],
-  ["5th", "leo", "fire", "fixed", "force", "Children, creativity, pleasure, love affairs", "manifest", "eternal"],
-  ["6th", "virgo", "earth", "mutable", "energy", "Health, service, daily work, illness", "manifest", "eternal"],
-  ["7th", "libra", "air", "cardinal", "position", "Partnership, marriage, open enemies", "manifest", "eternal"],
-  ["8th", "scorpio", "water", "fixed", "momentum", "Death, shared resources, transformation", "manifest", "eternal"],
-  ["9th", "sagittarius", "fire", "mutable", "action", "Travel, philosophy, religion, higher learning", "manifest", "eternal"],
-  ["10th", "capricorn", "earth", "cardinal", "control", "Career, reputation, authority, public life", "manifest", "eternal"],
-  ["11th", "aquarius", "air", "fixed", "moment", "Friends, groups, hopes, benefactors", "manifest", "eternal"],
-  ["12th", "pisces", "water", "mutable", "inertia", "Hidden enemies, isolation, self-undoing, surrender", "manifest", "eternal"],
+  ["1st", "aries", "fire", "cardinal", "acceleration", "Self, body, appearance, beginnings", "manifest", "akasha"],
+  ["2nd", "taurus", "earth", "fixed", "mass_control", "Resources, values, possessions", "manifest", "akasha"],
+  ["3rd", "gemini", "air", "mutable", "power", "Communication, siblings, local travel", "manifest", "akasha"],
+  ["4th", "cancer", "water", "cardinal", "velocity", "Home, family, roots, endings", "manifest", "akasha"],
+  ["5th", "leo", "fire", "fixed", "force", "Children, creativity, pleasure, love affairs", "manifest", "akasha"],
+  ["6th", "virgo", "earth", "mutable", "energy", "Health, service, daily work, illness", "manifest", "akasha"],
+  ["7th", "libra", "air", "cardinal", "position", "Partnership, marriage, open enemies", "manifest", "akasha"],
+  ["8th", "scorpio", "water", "fixed", "momentum", "Death, shared resources, transformation", "manifest", "akasha"],
+  ["9th", "sagittarius", "fire", "mutable", "action", "Travel, philosophy, religion, higher learning", "manifest", "akasha"],
+  ["10th", "capricorn", "earth", "cardinal", "control", "Career, reputation, authority, public life", "manifest", "akasha"],
+  ["11th", "aquarius", "air", "fixed", "moment", "Friends, groups, hopes, benefactors", "manifest", "akasha"],
+  ["12th", "pisces", "water", "mutable", "inertia", "Hidden enemies, isolation, self-undoing, surrender", "manifest", "akasha"],
 ]
 :put House { name => natural_sign, element, modality, dimension, description, phase, dignity }
 
 # ─── Aspect ──────────────────────────────────────────────────────────
 
 ?[name, degrees, nature, description, phase, dignity] <- [
-  ["conjunction", 0, "fusion", "Unity — merging of principles", "manifest", "eternal"],
-  ["sextile", 60, "harmony", "Opportunity — compatible elements cooperate", "manifest", "eternal"],
-  ["square", 90, "tension", "Crisis — forced action, the T operator", "manifest", "eternal"],
-  ["trine", 120, "flow", "Grace — same element, natural affinity", "manifest", "eternal"],
-  ["opposition", 180, "polarity", "Awareness — complementary tension across the axis", "manifest", "eternal"],
+  ["conjunction", 0, "fusion", "Unity — merging of principles", "manifest", "akasha"],
+  ["sextile", 60, "harmony", "Opportunity — compatible elements cooperate", "manifest", "akasha"],
+  ["square", 90, "tension", "Crisis — forced action, the T operator", "manifest", "akasha"],
+  ["trine", 120, "flow", "Grace — same element, natural affinity", "manifest", "akasha"],
+  ["opposition", 180, "polarity", "Awareness — complementary tension across the axis", "manifest", "akasha"],
 ]
 :put Aspect { name => degrees, nature, description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["fusion", "Conjunction — merging of energies", "manifest", "eternal"],
-  ["harmony", "Sextile — cooperative flow", "manifest", "eternal"],
-  ["tension", "Square — crisis and action", "manifest", "eternal"],
-  ["flow", "Trine — effortless grace", "manifest", "eternal"],
-  ["polarity", "Opposition — awareness through contrast", "manifest", "eternal"],
+  ["fusion", "Conjunction — merging of energies", "manifest", "akasha"],
+  ["harmony", "Sextile — cooperative flow", "manifest", "akasha"],
+  ["tension", "Square — crisis and action", "manifest", "akasha"],
+  ["flow", "Trine — effortless grace", "manifest", "akasha"],
+  ["polarity", "Opposition — awareness through contrast", "manifest", "akasha"],
 ]
 :put AspectNature { name => description, phase, dignity }
 
 # ─── Decan ───────────────────────────────────────────────────────────
 
 ?[name, sign, ruler, ordinal, description, phase, dignity] <- [
-  ["aries-1", "aries", "mars", 1, "First decan of Aries — mars ruler (Chaldean)", "manifest", "eternal"],
-  ["aries-2", "aries", "sun", 2, "Second decan of Aries", "manifest", "eternal"],
-  ["aries-3", "aries", "venus", 3, "Third decan of Aries", "manifest", "eternal"],
-  ["taurus-1", "taurus", "mercury", 4, "First decan of Taurus", "manifest", "eternal"],
-  ["taurus-2", "taurus", "moon", 5, "Second decan of Taurus", "manifest", "eternal"],
-  ["taurus-3", "taurus", "saturn", 6, "Third decan of Taurus", "manifest", "eternal"],
-  ["gemini-1", "gemini", "jupiter", 7, "First decan of Gemini", "manifest", "eternal"],
-  ["gemini-2", "gemini", "mars", 8, "Second decan of Gemini", "manifest", "eternal"],
-  ["gemini-3", "gemini", "sun", 9, "Third decan of Gemini", "manifest", "eternal"],
-  ["cancer-1", "cancer", "venus", 10, "First decan of Cancer", "manifest", "eternal"],
-  ["cancer-2", "cancer", "mercury", 11, "Second decan of Cancer", "manifest", "eternal"],
-  ["cancer-3", "cancer", "moon", 12, "Third decan of Cancer", "manifest", "eternal"],
-  ["leo-1", "leo", "saturn", 13, "First decan of Leo", "manifest", "eternal"],
-  ["leo-2", "leo", "jupiter", 14, "Second decan of Leo", "manifest", "eternal"],
-  ["leo-3", "leo", "mars", 15, "Third decan of Leo", "manifest", "eternal"],
-  ["virgo-1", "virgo", "sun", 16, "First decan of Virgo", "manifest", "eternal"],
-  ["virgo-2", "virgo", "venus", 17, "Second decan of Virgo", "manifest", "eternal"],
-  ["virgo-3", "virgo", "mercury", 18, "Third decan of Virgo", "manifest", "eternal"],
-  ["libra-1", "libra", "moon", 19, "First decan of Libra", "manifest", "eternal"],
-  ["libra-2", "libra", "saturn", 20, "Second decan of Libra", "manifest", "eternal"],
-  ["libra-3", "libra", "jupiter", 21, "Third decan of Libra", "manifest", "eternal"],
-  ["scorpio-1", "scorpio", "mars", 22, "First decan of Scorpio", "manifest", "eternal"],
-  ["scorpio-2", "scorpio", "sun", 23, "Second decan of Scorpio", "manifest", "eternal"],
-  ["scorpio-3", "scorpio", "venus", 24, "Third decan of Scorpio", "manifest", "eternal"],
-  ["sagittarius-1", "sagittarius", "mercury", 25, "First decan of Sagittarius", "manifest", "eternal"],
-  ["sagittarius-2", "sagittarius", "moon", 26, "Second decan of Sagittarius", "manifest", "eternal"],
-  ["sagittarius-3", "sagittarius", "saturn", 27, "Third decan of Sagittarius", "manifest", "eternal"],
-  ["capricorn-1", "capricorn", "jupiter", 28, "First decan of Capricorn", "manifest", "eternal"],
-  ["capricorn-2", "capricorn", "mars", 29, "Second decan of Capricorn", "manifest", "eternal"],
-  ["capricorn-3", "capricorn", "sun", 30, "Third decan of Capricorn", "manifest", "eternal"],
-  ["aquarius-1", "aquarius", "venus", 31, "First decan of Aquarius", "manifest", "eternal"],
-  ["aquarius-2", "aquarius", "mercury", 32, "Second decan of Aquarius", "manifest", "eternal"],
-  ["aquarius-3", "aquarius", "moon", 33, "Third decan of Aquarius", "manifest", "eternal"],
-  ["pisces-1", "pisces", "saturn", 34, "First decan of Pisces", "manifest", "eternal"],
-  ["pisces-2", "pisces", "jupiter", 35, "Second decan of Pisces", "manifest", "eternal"],
-  ["pisces-3", "pisces", "mars", 36, "Third decan of Pisces", "manifest", "eternal"],
+  ["aries-1", "aries", "mars", 1, "First decan of Aries — mars ruler (Chaldean)", "manifest", "akasha"],
+  ["aries-2", "aries", "sun", 2, "Second decan of Aries", "manifest", "akasha"],
+  ["aries-3", "aries", "venus", 3, "Third decan of Aries", "manifest", "akasha"],
+  ["taurus-1", "taurus", "mercury", 4, "First decan of Taurus", "manifest", "akasha"],
+  ["taurus-2", "taurus", "moon", 5, "Second decan of Taurus", "manifest", "akasha"],
+  ["taurus-3", "taurus", "saturn", 6, "Third decan of Taurus", "manifest", "akasha"],
+  ["gemini-1", "gemini", "jupiter", 7, "First decan of Gemini", "manifest", "akasha"],
+  ["gemini-2", "gemini", "mars", 8, "Second decan of Gemini", "manifest", "akasha"],
+  ["gemini-3", "gemini", "sun", 9, "Third decan of Gemini", "manifest", "akasha"],
+  ["cancer-1", "cancer", "venus", 10, "First decan of Cancer", "manifest", "akasha"],
+  ["cancer-2", "cancer", "mercury", 11, "Second decan of Cancer", "manifest", "akasha"],
+  ["cancer-3", "cancer", "moon", 12, "Third decan of Cancer", "manifest", "akasha"],
+  ["leo-1", "leo", "saturn", 13, "First decan of Leo", "manifest", "akasha"],
+  ["leo-2", "leo", "jupiter", 14, "Second decan of Leo", "manifest", "akasha"],
+  ["leo-3", "leo", "mars", 15, "Third decan of Leo", "manifest", "akasha"],
+  ["virgo-1", "virgo", "sun", 16, "First decan of Virgo", "manifest", "akasha"],
+  ["virgo-2", "virgo", "venus", 17, "Second decan of Virgo", "manifest", "akasha"],
+  ["virgo-3", "virgo", "mercury", 18, "Third decan of Virgo", "manifest", "akasha"],
+  ["libra-1", "libra", "moon", 19, "First decan of Libra", "manifest", "akasha"],
+  ["libra-2", "libra", "saturn", 20, "Second decan of Libra", "manifest", "akasha"],
+  ["libra-3", "libra", "jupiter", 21, "Third decan of Libra", "manifest", "akasha"],
+  ["scorpio-1", "scorpio", "mars", 22, "First decan of Scorpio", "manifest", "akasha"],
+  ["scorpio-2", "scorpio", "sun", 23, "Second decan of Scorpio", "manifest", "akasha"],
+  ["scorpio-3", "scorpio", "venus", 24, "Third decan of Scorpio", "manifest", "akasha"],
+  ["sagittarius-1", "sagittarius", "mercury", 25, "First decan of Sagittarius", "manifest", "akasha"],
+  ["sagittarius-2", "sagittarius", "moon", 26, "Second decan of Sagittarius", "manifest", "akasha"],
+  ["sagittarius-3", "sagittarius", "saturn", 27, "Third decan of Sagittarius", "manifest", "akasha"],
+  ["capricorn-1", "capricorn", "jupiter", 28, "First decan of Capricorn", "manifest", "akasha"],
+  ["capricorn-2", "capricorn", "mars", 29, "Second decan of Capricorn", "manifest", "akasha"],
+  ["capricorn-3", "capricorn", "sun", 30, "Third decan of Capricorn", "manifest", "akasha"],
+  ["aquarius-1", "aquarius", "venus", 31, "First decan of Aquarius", "manifest", "akasha"],
+  ["aquarius-2", "aquarius", "mercury", 32, "Second decan of Aquarius", "manifest", "akasha"],
+  ["aquarius-3", "aquarius", "moon", 33, "Third decan of Aquarius", "manifest", "akasha"],
+  ["pisces-1", "pisces", "saturn", 34, "First decan of Pisces", "manifest", "akasha"],
+  ["pisces-2", "pisces", "jupiter", 35, "Second decan of Pisces", "manifest", "akasha"],
+  ["pisces-3", "pisces", "mars", 36, "Third decan of Pisces", "manifest", "akasha"],
 ]
 :put Decan { name => sign, ruler, ordinal, description, phase, dignity }
 
 # ─── Rulership ───────────────────────────────────────────────────────
 
-?[sign, planet, dignity_type, phase, dignity] <- [
-  ["aries", "mars", "domicile", "manifest", "eternal"],
-  ["aries", "sun", "exaltation", "manifest", "eternal"],
-  ["aries", "venus", "detriment", "manifest", "eternal"],
-  ["aries", "saturn", "fall", "manifest", "eternal"],
-  ["taurus", "venus", "domicile", "manifest", "eternal"],
-  ["taurus", "moon", "exaltation", "manifest", "eternal"],
-  ["taurus", "mars", "detriment", "manifest", "eternal"],
-  ["gemini", "mercury", "domicile", "manifest", "eternal"],
-  ["gemini", "jupiter", "detriment", "manifest", "eternal"],
-  ["cancer", "moon", "domicile", "manifest", "eternal"],
-  ["cancer", "jupiter", "exaltation", "manifest", "eternal"],
-  ["cancer", "saturn", "detriment", "manifest", "eternal"],
-  ["cancer", "mars", "fall", "manifest", "eternal"],
-  ["leo", "sun", "domicile", "manifest", "eternal"],
-  ["leo", "saturn", "detriment", "manifest", "eternal"],
-  ["virgo", "mercury", "domicile", "manifest", "eternal"],
-  ["virgo", "mercury", "exaltation", "manifest", "eternal"],
-  ["virgo", "jupiter", "detriment", "manifest", "eternal"],
-  ["virgo", "venus", "fall", "manifest", "eternal"],
-  ["libra", "venus", "domicile", "manifest", "eternal"],
-  ["libra", "saturn", "exaltation", "manifest", "eternal"],
-  ["libra", "mars", "detriment", "manifest", "eternal"],
-  ["libra", "sun", "fall", "manifest", "eternal"],
-  ["scorpio", "mars", "domicile", "manifest", "eternal"],
-  ["scorpio", "venus", "detriment", "manifest", "eternal"],
-  ["scorpio", "moon", "fall", "manifest", "eternal"],
-  ["sagittarius", "jupiter", "domicile", "manifest", "eternal"],
-  ["sagittarius", "mercury", "detriment", "manifest", "eternal"],
-  ["capricorn", "saturn", "domicile", "manifest", "eternal"],
-  ["capricorn", "mars", "exaltation", "manifest", "eternal"],
-  ["capricorn", "moon", "detriment", "manifest", "eternal"],
-  ["capricorn", "jupiter", "fall", "manifest", "eternal"],
-  ["aquarius", "saturn", "domicile", "manifest", "eternal"],
-  ["aquarius", "sun", "detriment", "manifest", "eternal"],
-  ["pisces", "jupiter", "domicile", "manifest", "eternal"],
-  ["pisces", "venus", "exaltation", "manifest", "eternal"],
-  ["pisces", "mercury", "detriment", "manifest", "eternal"],
-  ["pisces", "mercury", "fall", "manifest", "eternal"],
-]
-:put Rulership { sign, planet, dignity_type => phase, dignity }
+# dignity column now uses unified Pancha Tattva:
+# akasha=domicile, vayu=exaltation, apas=detriment, prithvi=fall
 
-?[name, description, phase, dignity] <- [
-  ["domicile", "Planet in its own sign — full authority", "manifest", "eternal"],
-  ["exaltation", "Planet in its sign of exaltation — honored guest", "manifest", "eternal"],
-  ["detriment", "Planet in the sign opposite its domicile — weakened", "manifest", "eternal"],
-  ["fall", "Planet in the sign opposite its exaltation — debilitated", "manifest", "eternal"],
+?[sign, planet, dignity, phase] <- [
+  ["aries", "mars", "akasha", "manifest"],
+  ["aries", "sun", "vayu", "manifest"],
+  ["aries", "venus", "apas", "manifest"],
+  ["aries", "saturn", "prithvi", "manifest"],
+  ["taurus", "venus", "akasha", "manifest"],
+  ["taurus", "moon", "vayu", "manifest"],
+  ["taurus", "mars", "apas", "manifest"],
+  ["gemini", "mercury", "akasha", "manifest"],
+  ["gemini", "jupiter", "apas", "manifest"],
+  ["cancer", "moon", "akasha", "manifest"],
+  ["cancer", "jupiter", "vayu", "manifest"],
+  ["cancer", "saturn", "apas", "manifest"],
+  ["cancer", "mars", "prithvi", "manifest"],
+  ["leo", "sun", "akasha", "manifest"],
+  ["leo", "saturn", "apas", "manifest"],
+  ["virgo", "mercury", "akasha", "manifest"],
+  ["virgo", "mercury", "vayu", "manifest"],
+  ["virgo", "jupiter", "apas", "manifest"],
+  ["virgo", "venus", "prithvi", "manifest"],
+  ["libra", "venus", "akasha", "manifest"],
+  ["libra", "saturn", "vayu", "manifest"],
+  ["libra", "mars", "apas", "manifest"],
+  ["libra", "sun", "prithvi", "manifest"],
+  ["scorpio", "mars", "akasha", "manifest"],
+  ["scorpio", "venus", "apas", "manifest"],
+  ["scorpio", "moon", "prithvi", "manifest"],
+  ["sagittarius", "jupiter", "akasha", "manifest"],
+  ["sagittarius", "mercury", "apas", "manifest"],
+  ["capricorn", "saturn", "akasha", "manifest"],
+  ["capricorn", "mars", "vayu", "manifest"],
+  ["capricorn", "moon", "apas", "manifest"],
+  ["capricorn", "jupiter", "prithvi", "manifest"],
+  ["aquarius", "saturn", "akasha", "manifest"],
+  ["aquarius", "sun", "apas", "manifest"],
+  ["pisces", "jupiter", "akasha", "manifest"],
+  ["pisces", "venus", "vayu", "manifest"],
+  ["pisces", "mercury", "apas", "manifest"],
+  ["pisces", "mercury", "prithvi", "manifest"],
 ]
-:put DignityType { name => description, phase, dignity }
+:put Rulership { sign, planet, dignity => phase }
 
 # ─── Sect ────────────────────────────────────────────────────────────
 
 ?[name, luminary, description, phase, dignity] <- [
-  ["diurnal", "sun", "Day sect — Sun, Jupiter, Saturn above horizon", "manifest", "eternal"],
-  ["nocturnal", "moon", "Night sect — Moon, Venus, Mars above horizon", "manifest", "eternal"],
+  ["diurnal", "sun", "Day sect — Sun, Jupiter, Saturn above horizon", "manifest", "akasha"],
+  ["nocturnal", "moon", "Night sect — Moon, Venus, Mars above horizon", "manifest", "akasha"],
 ]
 :put Sect { name => luminary, description, phase, dignity }
 
 # ─── Condition ───────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["direct", "Planet moves forward in normal motion", "manifest", "eternal"],
-  ["retrograde", "Planet appears to move backward — turned inward", "manifest", "eternal"],
-  ["stationary", "Planet appears to stand still — concentrated power", "manifest", "eternal"],
-  ["oriental", "Planet rises before the Sun — morning star", "manifest", "eternal"],
-  ["occidental", "Planet sets after the Sun — evening star", "manifest", "eternal"],
-  ["combustion", "Planet within 8.5 degrees of Sun — overwhelmed by solar light", "manifest", "eternal"],
-  ["under_beams", "Planet within 17 degrees of Sun — hidden from view", "manifest", "eternal"],
-  ["cazimi", "Planet within 17 minutes of Sun — in the heart of the Sun, empowered", "manifest", "eternal"],
+  ["direct", "Planet moves forward in normal motion", "manifest", "akasha"],
+  ["retrograde", "Planet appears to move backward — turned inward", "manifest", "akasha"],
+  ["stationary", "Planet appears to stand still — concentrated power", "manifest", "akasha"],
+  ["oriental", "Planet rises before the Sun — morning star", "manifest", "akasha"],
+  ["occidental", "Planet sets after the Sun — evening star", "manifest", "akasha"],
+  ["combustion", "Planet within 8.5 degrees of Sun — overwhelmed by solar light", "manifest", "akasha"],
+  ["under_beams", "Planet within 17 degrees of Sun — hidden from view", "manifest", "akasha"],
+  ["cazimi", "Planet within 17 minutes of Sun — in the heart of the Sun, empowered", "manifest", "akasha"],
 ]
 :put Condition { name => description, phase, dignity }
 
@@ -313,91 +307,91 @@
 # ─── Type ────────────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["primitive", "Leaf scalar — resolved by Scalar (bool, int, domain, data)", "manifest", "eternal"],
-  ["enum", "Finite domain — discrete category with named variants", "manifest", "eternal"],
-  ["struct", "Product — Tesniere connexion, typed projections", "manifest", "eternal"],
-  ["union", "Coproduct — Tesniere junction, tagged alternatives", "manifest", "eternal"],
-  ["list", "Homogeneous sequence of typed elements", "manifest", "eternal"],
-  ["void", "Unit — carries no data", "manifest", "eternal"],
+  ["primitive", "Leaf scalar — resolved by Scalar (bool, int, domain, data)", "manifest", "akasha"],
+  ["enum", "Finite domain — discrete category with named variants", "manifest", "akasha"],
+  ["struct", "Product — Tesniere connexion, typed projections", "manifest", "akasha"],
+  ["union", "Coproduct — Tesniere junction, tagged alternatives", "manifest", "akasha"],
+  ["list", "Homogeneous sequence of typed elements", "manifest", "akasha"],
+  ["void", "Unit — carries no data", "manifest", "akasha"],
 ]
 :put Type { name => description, phase, dignity }
 
 # ─── Scalar ──────────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["domain", "Value is a discriminant of a finite domain enum", "manifest", "eternal"],
-  ["bool", "Boolean leaf — Dignaga pratyaksha: is or is-not", "manifest", "eternal"],
-  ["int", "Integer leaf qualified by Measure and Unit — Young geometry", "manifest", "eternal"],
-  ["data", "Content-addressed bytes — Saturn archive via criome-stored", "manifest", "eternal"],
+  ["domain", "Value is a discriminant of a finite domain enum", "manifest", "akasha"],
+  ["bool", "Boolean leaf — Dignaga pratyaksha: is or is-not", "manifest", "akasha"],
+  ["int", "Integer leaf qualified by Measure and Unit — Young geometry", "manifest", "akasha"],
+  ["data", "Content-addressed bytes — Saturn archive via criome-stored", "manifest", "akasha"],
 ]
 :put Scalar { name => description, phase, dignity }
 
 # ─── Cardinality ─────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["one", "Exactly one value — required field", "manifest", "eternal"],
-  ["optional", "Zero or one value", "manifest", "eternal"],
-  ["many", "Zero or more values — list", "manifest", "eternal"],
-  ["map", "Key-value pairs — associative", "manifest", "eternal"],
+  ["one", "Exactly one value — required field", "manifest", "akasha"],
+  ["optional", "Zero or one value", "manifest", "akasha"],
+  ["many", "Zero or more values — list", "manifest", "akasha"],
+  ["map", "Key-value pairs — associative", "manifest", "akasha"],
 ]
 :put Cardinality { name => description, phase, dignity }
 
 # ─── Direction ───────────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["request", "Input parameters of an RPC method", "manifest", "eternal"],
-  ["response", "Output values of an RPC method", "manifest", "eternal"],
+  ["request", "Input parameters of an RPC method", "manifest", "akasha"],
+  ["response", "Output values of an RPC method", "manifest", "akasha"],
 ]
 :put Direction { name => description, phase, dignity }
 
 # ─── Unit sub-domains ────────────────────────────────────────────────
 
 ?[name, description, phase, dignity] <- [
-  ["second", "SI base unit of time", "manifest", "eternal"],
-  ["minute", "60 seconds", "manifest", "eternal"],
-  ["hour", "3600 seconds", "manifest", "eternal"],
-  ["day", "86400 seconds", "manifest", "eternal"],
-  ["year", "365.25 days", "manifest", "eternal"],
-  ["epoch_ms", "Milliseconds since Unix epoch", "manifest", "eternal"],
+  ["second", "SI base unit of time", "manifest", "akasha"],
+  ["minute", "60 seconds", "manifest", "akasha"],
+  ["hour", "3600 seconds", "manifest", "akasha"],
+  ["day", "86400 seconds", "manifest", "akasha"],
+  ["year", "365.25 days", "manifest", "akasha"],
+  ["epoch_ms", "Milliseconds since Unix epoch", "manifest", "akasha"],
 ]
 :put TimeUnit { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["ordinal", "0-indexed position rendered as 1st, 2nd, 3rd", "manifest", "eternal"],
-  ["byte_offset", "Position in bytes from start", "manifest", "eternal"],
-  ["line", "Line number (1-indexed)", "manifest", "eternal"],
-  ["index", "0-indexed array/list position", "manifest", "eternal"],
+  ["ordinal", "0-indexed position rendered as 1st, 2nd, 3rd", "manifest", "akasha"],
+  ["byte_offset", "Position in bytes from start", "manifest", "akasha"],
+  ["line", "Line number (1-indexed)", "manifest", "akasha"],
+  ["index", "0-indexed array/list position", "manifest", "akasha"],
 ]
 :put PositionUnit { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["count", "Dimensionless count", "manifest", "eternal"],
-  ["row_count", "Number of database rows", "manifest", "eternal"],
-  ["arity", "Number of columns in a relation", "manifest", "eternal"],
+  ["count", "Dimensionless count", "manifest", "akasha"],
+  ["row_count", "Number of database rows", "manifest", "akasha"],
+  ["arity", "Number of columns in a relation", "manifest", "akasha"],
 ]
 :put CountUnit { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["byte", "Single byte", "manifest", "eternal"],
-  ["kilobyte", "1024 bytes", "manifest", "eternal"],
-  ["megabyte", "1048576 bytes", "manifest", "eternal"],
+  ["byte", "Single byte", "manifest", "akasha"],
+  ["kilobyte", "1024 bytes", "manifest", "akasha"],
+  ["megabyte", "1048576 bytes", "manifest", "akasha"],
 ]
 :put SizeUnit { name => description, phase, dignity }
 
 # ─── measure_unit mapping ────────────────────────────────────────────
 
 ?[measure, unit, phase, dignity] <- [
-  ["L", "PositionUnit", "manifest", "proven"],
-  ["L/T", "TimeUnit", "manifest", "proven"],
-  ["L/T²", "TimeUnit", "manifest", "proven"],
-  ["L/T³", "TimeUnit", "manifest", "proven"],
-  ["ML", "CountUnit", "manifest", "proven"],
-  ["ML/T", "CountUnit", "manifest", "proven"],
-  ["ML/T²", "CountUnit", "manifest", "proven"],
-  ["ML/T³", "SizeUnit", "manifest", "proven"],
-  ["ML²", "SizeUnit", "manifest", "proven"],
-  ["ML²/T", "TimeUnit", "manifest", "proven"],
-  ["ML²/T²", "SizeUnit", "manifest", "proven"],
-  ["ML²/T³", "SizeUnit", "manifest", "proven"],
+  ["L", "PositionUnit", "manifest", "vayu"],
+  ["L/T", "TimeUnit", "manifest", "vayu"],
+  ["L/T²", "TimeUnit", "manifest", "vayu"],
+  ["L/T³", "TimeUnit", "manifest", "vayu"],
+  ["ML", "CountUnit", "manifest", "vayu"],
+  ["ML/T", "CountUnit", "manifest", "vayu"],
+  ["ML/T²", "CountUnit", "manifest", "vayu"],
+  ["ML/T³", "SizeUnit", "manifest", "vayu"],
+  ["ML²", "SizeUnit", "manifest", "vayu"],
+  ["ML²/T", "TimeUnit", "manifest", "vayu"],
+  ["ML²/T²", "SizeUnit", "manifest", "vayu"],
+  ["ML²/T³", "SizeUnit", "manifest", "vayu"],
 ]
 :put measure_unit { measure => unit, phase, dignity }

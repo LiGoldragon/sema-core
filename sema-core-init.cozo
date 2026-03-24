@@ -172,20 +172,14 @@
 }
 
 # ─── Planet-Sign Dignity Assignments ─────────────────────────────────
+# dignity column references the unified Dignity domain (Pancha Tattva).
+# akasha=domicile, vayu=exaltation, tejas=triplicity, apas=bound, prithvi=face.
 
 :create Rulership {
   sign: String,
   planet: String,
-  dignity_type: String =>
-  phase: String,
-  dignity: String
-}
-
-:create DignityType {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
+  dignity: String =>
+  phase: String
 }
 
 # ─── Sect and Condition ──────────────────────────────────────────────
