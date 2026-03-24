@@ -33,7 +33,7 @@
   ["Element", "Four classical elements — fire/water/air/earth", "manifest", "akasha"],
   ["Modality", "Three modalities — cardinal/fixed/mutable", "manifest", "akasha"],
   ["Sign", "Twelve zodiacal signs", "manifest", "akasha"],
-  ["Planet", "Seven classical planets", "manifest", "akasha"],
+  ["Archetype", "Seven irreducible forces/stages of process — 4th prime generator", "manifest", "akasha"],
   ["Measure", "Twelve measure formulae — Young Geometry of Meaning", "manifest", "akasha"],
   ["Dimension", "Twelve physics dimensions from Young", "manifest", "akasha"],
   ["House", "Twelve topical houses — areas of life experience", "manifest", "akasha"],
@@ -41,7 +41,7 @@
   ["AspectNature", "Qualitative nature of geometric aspects", "manifest", "akasha"],
   ["Decan", "Thirty-six 10-degree divisions of the zodiac", "manifest", "akasha"],
   ["Rulership", "Planet-Sign dignity assignments — unified via Pancha Tattva", "manifest", "akasha"],
-  ["Sect", "Diurnal-nocturnal binary division", "manifest", "akasha"],
+  ["Polarity", "Irreducible binary — 1st prime generator. Sect is astrological reading.", "manifest", "akasha"],
   ["Condition", "Planetary astronomical conditions", "manifest", "akasha"],
   ["Type", "Structural form of a type — Sowa lattice atoms", "manifest", "akasha"],
   ["Scalar", "What leaf scalar a field carries", "manifest", "akasha"],
@@ -113,7 +113,7 @@
   ["jupiter", "♃", 6, 2, "manifest", "akasha"],
   ["venus", "♀", 6, 2, "manifest", "akasha"],
 ]
-:put Planet { name => glyph, stage, freedom, phase, dignity }
+:put Archetype { name => glyph, stage, freedom, phase, dignity }
 
 # ─── Measure (Young's Rosetta Stone) ─────────────────────────────────
 
@@ -284,7 +284,7 @@
   ["diurnal", "sun", "Day sect — Sun, Jupiter, Saturn above horizon", "manifest", "akasha"],
   ["nocturnal", "moon", "Night sect — Moon, Venus, Mars above horizon", "manifest", "akasha"],
 ]
-:put Sect { name => luminary, description, phase, dignity }
+:put Polarity { name => luminary, description, phase, dignity }
 
 # ─── Condition ───────────────────────────────────────────────────────
 

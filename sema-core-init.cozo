@@ -1,5 +1,7 @@
 # Sema Core — boots the binary world
-# Three pillars: Phase/Dignity, Astrality, Structure.
+# Two pillars: Estar (the energetic being-quality layer) and Structure.
+# Four prime generators: Polarity(2), Modality(3), Dignity(5), Archetype(7).
+# All domains derive multiplicatively: Element=2², Sign=2²×3, Decan=2²×3², 360°=2³×3²×5.
 # No Rust yet — CozoScript schemas only. Rust VCS/boot rewrite comes later.
 # Load order: sema-core -> sema -> noesis
 
@@ -53,10 +55,11 @@
 }
 
 # ═══════════════════════════════════════════════════════════════════════
-# PILLAR 2 — Astrality (the energetic inference layer)
-# Steiner: Astralitat — the principle by which cosmic structure
-# maps into typed form. Stoic sympatheia, Vedic bandhu, Ficino spiritus.
-# Young: 12 measure formulae = zodiacal signs = physics dimensions.
+# ESTAR — The energetic being-quality layer
+# From Latin stare (to stand), resonating with aster (star).
+# How well does this thing stand where it stands?
+# Four prime generators: Polarity(2), Modality(3), Dignity(5), Archetype(7).
+# Derived: Element=2², Sign=2²×3, Decan=2²×3², 360°=2³×3²×5.
 # Every TypedInt carries a Measure. Every Measure carries a Sign.
 # The LLM walks morphism chains to infer qualitative signatures.
 # ═══════════════════════════════════════════════════════════════════════
@@ -92,9 +95,11 @@
   dignity: String
 }
 
-# ─── The Seven Classical Planets ─────────────────────────────────────
+# ─── The Seven Archetypes ────────────────────────────────────────────
+# Irreducible forces/stages of process (Young). The planets are the
+# astrological reading. 7 is prime — cannot be derived from 2, 3, or 5.
 
-:create Planet {
+:create Archetype {
   name: String =>
   glyph: String,
   stage: Int,
@@ -182,9 +187,12 @@
   phase: String
 }
 
-# ─── Sect and Condition ──────────────────────────────────────────────
+# ─── Polarity and Condition ───────────────────────────────────────────
+# Polarity(2) is the first prime generator. Sect (diurnal/nocturnal) is
+# the astrological reading. Direction (request/response) is the protocol reading.
+# Element = Polarity × Polarity. All binary distinctions are Polarity.
 
-:create Sect {
+:create Polarity {
   name: String =>
   luminary: String,
   description: String,
