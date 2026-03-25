@@ -1,489 +1,199 @@
 # Sema Core — Domain Variant Seeds
+# Only seeds NEW relations (not in the old samskara stack).
+# Old relations (Phase, Dignity, Domain, Element, Modality, Sign, Measure,
+# Dimension, House, Aspect, AspectNature, Decan, Rulership, Condition, morphism)
+# are already populated by samskara-core + samskara.
+#
 # Ordinal alignment: variant order matches generator order.
-# @0 in any 3-domain = cardinal quality. @1 = fixed. @2 = mutable.
-# @0 in any 4-domain = fire quality. @1 = earth. @2 = air. @3 = water.
-# @0 in any 5-domain = space quality. @1 = air. @2 = fire. @3 = water. @4 = earth.
 
 # ═══════════════════════════════════════════════════════════════════════
-# Phase & Dignity (primordial — no phase/dignity columns on themselves)
-# ═══════════════════════════════════════════════════════════════════════
-
-# Phase ordinal-aligned with Modality: @0=cardinal, @1=fixed, @2=mutable
-?[name, glyph, in_world_hash, description] <- [
-  ["becoming", "☽", false, "Staged, proposed — what is being considered"],
-  ["manifest", "☉", true, "Current, active — what IS"],
-  ["retired", "♄", false, "Archived, superseded — what WAS"],
-]
-:put Phase { name => glyph, in_world_hash, description }
-
-# Dignity: the five elements as quality levels
-?[name, rank, description] <- [
-  ["space", 0, "Dwelling, full authority. Trust: eternal. Placement: domicile."],
-  ["air", 1, "Insight, precision. Trust: proven. Placement: exaltation."],
-  ["fire", 2, "Affinity, recognition. Trust: seen. Placement: triplicity."],
-  ["water", 3, "Resonance, unfixed. Trust: uncertain. Placement: bound."],
-  ["earth", 4, "Surface, bare contact. Trust: delusion. Placement: face."],
-]
-:put Dignity { name => rank, description }
-
-# ═══════════════════════════════════════════════════════════════════════
-# META — Domain registry, Functor
+# Register NEW domains in the existing Domain registry
 # ═══════════════════════════════════════════════════════════════════════
 
 ?[name, description, phase, dignity] <- [
-  ["Phase", "Lifecycle (3, Modality-aligned): becoming/manifest/retired", "manifest", "space"],
-  ["Dignity", "Quality of fitness (5 elements): space/air/fire/water/earth", "manifest", "space"],
-  ["Domain", "Registry of all controlled vocabularies", "manifest", "space"],
-  ["Functor", "How things map (3, Modality-aligned): bijective/deterministic/tradition_dependent", "manifest", "space"],
-  ["Element", "Four elements = Polarity² (4): fire/earth/air/water", "manifest", "space"],
-  ["Modality", "3rd prime generator (3): cardinal/fixed/mutable", "manifest", "space"],
-  ["Sign", "Twelve zodiacal signs (12 = 2²×3)", "manifest", "space"],
-  ["Archetype", "4th prime generator (7): sun/moon/mars/saturn/mercury/jupiter/venus", "manifest", "space"],
-  ["Measure", "Young Geometry of Meaning — 12 measure formulae", "manifest", "space"],
-  ["Dimension", "Twelve physics dimensions from Young", "manifest", "space"],
-  ["House", "Twelve topical houses — areas of life experience", "manifest", "space"],
-  ["Aspect", "Geometric relationships (5, Dignity-aligned)", "manifest", "space"],
-  ["AspectNature", "Qualitative nature of aspects (5, Dignity-aligned)", "manifest", "space"],
-  ["Decan", "Thirty-six 10-degree divisions (36 = 2²×3²)", "manifest", "space"],
-  ["Rulership", "Archetype-Sign dignity assignments", "manifest", "space"],
-  ["Polarity", "1st prime generator (2): diurnal/nocturnal", "manifest", "space"],
-  ["Condition", "Planetary conditions (8 = 2³)", "manifest", "space"],
-  ["Type", "Structural form of a type (6 = 2×3)", "manifest", "space"],
-  ["Scalar", "Leaf scalar (4, Element-aligned): domain/data/bool/int", "manifest", "space"],
-  ["Cardinality", "Field multiplicity (4, Element-aligned): one/map/many/optional", "manifest", "space"],
-  ["Direction", "Data flow (2, Polarity-aligned): request/response", "manifest", "space"],
-  ["Name", "Universal label registry — all context-specific variant names", "manifest", "space"],
-  ["TimeUnit", "Unit of time measurement", "manifest", "space"],
-  ["PositionUnit", "Unit of positional measurement", "manifest", "space"],
-  ["CountUnit", "Unit of counting", "manifest", "space"],
-  ["SizeUnit", "Unit of data size", "manifest", "space"],
+  ["Archetype", "4th prime generator (7): sun/moon/mars/saturn/mercury/jupiter/venus", "manifest", "eternal"],
+  ["Polarity", "1st prime generator (2): diurnal/nocturnal", "manifest", "eternal"],
+  ["Type", "Structural form of a type (6 = 2x3)", "manifest", "eternal"],
+  ["Scalar", "Leaf scalar (4, Element-aligned): domain/data/bool/int", "manifest", "eternal"],
+  ["Cardinality", "Field multiplicity (4, Element-aligned): one/map/many/optional", "manifest", "eternal"],
+  ["Direction", "Data flow (2, Polarity-aligned): request/response", "manifest", "eternal"],
+  ["TimeUnit", "Unit of time measurement", "manifest", "eternal"],
+  ["PositionUnit", "Unit of positional measurement", "manifest", "eternal"],
+  ["CountUnit", "Unit of counting", "manifest", "eternal"],
+  ["SizeUnit", "Unit of data size", "manifest", "eternal"],
 ]
 :put Domain { name => description, phase, dignity }
 
-# Functor ordinal-aligned with Modality: @0=cardinal, @1=fixed, @2=mutable
-?[name, description, phase, dignity] <- [
-  ["bijective", "One-to-one and onto — reversible", "manifest", "space"],
-  ["deterministic", "Exactly one output for each input", "manifest", "space"],
-  ["tradition_dependent", "Mapping varies by tradition or context", "manifest", "space"],
-]
-:put Functor { name => description, phase, dignity }
-
 # ═══════════════════════════════════════════════════════════════════════
-# Generators + Derived Astrological Domains
+# Archetype (generator, 7) — was Planet in old stack, new domain name
 # ═══════════════════════════════════════════════════════════════════════
-
-# ─── Polarity (generator, 2) ────────────────────────────────────────
-
-?[name, luminary, description, phase, dignity] <- [
-  ["diurnal", "sun", "Day — Sun, Jupiter, Saturn above horizon", "manifest", "space"],
-  ["nocturnal", "moon", "Night — Moon, Venus, Mars above horizon", "manifest", "space"],
-]
-:put Polarity { name => luminary, description, phase, dignity }
-
-# ─── Modality (generator, 3) ────────────────────────────────────────
-
-?[name, description, phase, dignity] <- [
-  ["cardinal", "Initiating, directive — the HOW (acceleration, change)", "manifest", "space"],
-  ["fixed", "Sustaining, concentrative — the WHAT (persistence, form)", "manifest", "space"],
-  ["mutable", "Adaptable, distributive — the WHY (motive, context)", "manifest", "space"],
-]
-:put Modality { name => description, phase, dignity }
-
-# ─── Element (derived, 4 = Polarity²) ───────────────────────────────
-
-?[name, description, phase, dignity] <- [
-  ["fire", "Identity, will, spirit — what IS", "manifest", "space"],
-  ["earth", "Body, matter, manifestation — what ENDURES", "manifest", "space"],
-  ["air", "Thought, mind, relationship — what RELATES", "manifest", "space"],
-  ["water", "Feeling, soul, transformation — what MOVES", "manifest", "space"],
-]
-:put Element { name => description, phase, dignity }
-
-# ─── Dignity (generator, 5) already seeded above ────────────────────
-
-# ─── Archetype (generator, 7) ───────────────────────────────────────
 
 ?[name, glyph, stage, freedom, phase, dignity] <- [
-  ["sun", "☉", 1, 3, "manifest", "space"],
-  ["moon", "☽", 2, 2, "manifest", "space"],
-  ["mars", "♂", 3, 1, "manifest", "space"],
-  ["saturn", "♄", 4, 0, "manifest", "space"],
-  ["mercury", "☿", 5, 1, "manifest", "space"],
-  ["jupiter", "♃", 6, 2, "manifest", "space"],
-  ["venus", "♀", 6, 2, "manifest", "space"],
+  ["sun", "☉", 1, 3, "manifest", "eternal"],
+  ["moon", "☽", 2, 2, "manifest", "eternal"],
+  ["mars", "♂", 3, 1, "manifest", "eternal"],
+  ["saturn", "♄", 4, 0, "manifest", "eternal"],
+  ["mercury", "☿", 5, 1, "manifest", "eternal"],
+  ["jupiter", "♃", 6, 2, "manifest", "eternal"],
+  ["venus", "♀", 6, 2, "manifest", "eternal"],
 ]
 :put Archetype { name => glyph, stage, freedom, phase, dignity }
 
-# ─── Sign (derived, 12 = 2²×3) ──────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════
+# Polarity (generator, 2) — was Sect in old stack, new domain name
+# ═══════════════════════════════════════════════════════════════════════
 
-?[name, glyph, element, modality, house, ruler, phase, dignity] <- [
-  ["aries", "♈", "fire", "cardinal", 1, "mars", "manifest", "air"],
-  ["taurus", "♉", "earth", "fixed", 2, "venus", "manifest", "air"],
-  ["gemini", "♊", "air", "mutable", 3, "mercury", "manifest", "air"],
-  ["cancer", "♋", "water", "cardinal", 4, "moon", "manifest", "air"],
-  ["leo", "♌", "fire", "fixed", 5, "sun", "manifest", "air"],
-  ["virgo", "♍", "earth", "mutable", 6, "mercury", "manifest", "air"],
-  ["libra", "♎", "air", "cardinal", 7, "venus", "manifest", "air"],
-  ["scorpio", "♏", "water", "fixed", 8, "mars", "manifest", "air"],
-  ["sagittarius", "♐", "fire", "mutable", 9, "jupiter", "manifest", "air"],
-  ["capricorn", "♑", "earth", "cardinal", 10, "saturn", "manifest", "air"],
-  ["aquarius", "♒", "air", "fixed", 11, "saturn", "manifest", "air"],
-  ["pisces", "♓", "water", "mutable", 12, "jupiter", "manifest", "air"],
+?[name, luminary, description, phase, dignity] <- [
+  ["diurnal", "sun", "Day — Sun, Jupiter, Saturn above horizon", "manifest", "eternal"],
+  ["nocturnal", "moon", "Night — Moon, Venus, Mars above horizon", "manifest", "eternal"],
 ]
-:put Sign { name => glyph, element, modality, house, ruler, phase, dignity }
-
-# ─── Measure (Young's Rosetta Stone) ─────────────────────────────────
-
-?[sign, formula, element, modality, dimension, physical, psychological, phase, dignity] <- [
-  ["aries", "L/T²", "fire", "cardinal", "acceleration", "Acceleration", "Blind action", "manifest", "air"],
-  ["taurus", "ML/T³", "earth", "fixed", "mass_control", "Mass control", "Establishment", "manifest", "air"],
-  ["gemini", "ML²/T³", "air", "mutable", "power", "Power", "Knowledge", "manifest", "air"],
-  ["cancer", "L/T", "water", "cardinal", "velocity", "Velocity", "Change", "manifest", "air"],
-  ["leo", "ML/T²", "fire", "fixed", "force", "Force", "Being, identity", "manifest", "air"],
-  ["virgo", "ML²/T²", "earth", "mutable", "energy", "Energy", "Work, fact", "manifest", "air"],
-  ["libra", "L", "air", "cardinal", "position", "Position", "Observation", "manifest", "air"],
-  ["scorpio", "ML/T", "water", "fixed", "momentum", "Momentum", "Transformation", "manifest", "air"],
-  ["sagittarius", "ML²/T", "fire", "mutable", "action", "Action", "Hunch, intuition", "manifest", "air"],
-  ["capricorn", "L/T³", "earth", "cardinal", "control", "Control", "Control, mastery", "manifest", "air"],
-  ["aquarius", "ML", "air", "fixed", "moment", "Moment (of inertia)", "Significance", "manifest", "air"],
-  ["pisces", "ML²", "water", "mutable", "inertia", "Moment of inertia", "Belief, surrender", "manifest", "air"],
-]
-:put Measure { sign => formula, element, modality, dimension, physical, psychological, phase, dignity }
-
-# ─── Dimension ───────────────────────────────────────────────────────
-
-?[name, description, phase, dignity] <- [
-  ["position", "0th order — where something IS", "manifest", "space"],
-  ["velocity", "1st order — rate of change of position", "manifest", "space"],
-  ["acceleration", "2nd order — rate of change of velocity", "manifest", "space"],
-  ["control", "3rd order — rate of change of acceleration", "manifest", "space"],
-  ["moment", "0th order with mass — significance", "manifest", "space"],
-  ["momentum", "1st order with mass — impetus", "manifest", "space"],
-  ["force", "2nd order with mass — push/pull", "manifest", "space"],
-  ["mass_control", "3rd order with mass — power over matter", "manifest", "space"],
-  ["action", "1st order angular — quantum of action", "manifest", "space"],
-  ["energy", "2nd order angular — capacity to do work", "manifest", "space"],
-  ["power", "3rd order angular — rate of energy transfer", "manifest", "space"],
-  ["inertia", "0th order with mass and length squared — resistance to change", "manifest", "space"],
-]
-:put Dimension { name => description, phase, dignity }
-
-# ─── House ───────────────────────────────────────────────────────────
-
-?[name, natural_sign, element, modality, dimension, description, phase, dignity] <- [
-  ["1st", "aries", "fire", "cardinal", "acceleration", "Self, body, appearance, beginnings", "manifest", "space"],
-  ["2nd", "taurus", "earth", "fixed", "mass_control", "Resources, values, possessions", "manifest", "space"],
-  ["3rd", "gemini", "air", "mutable", "power", "Communication, siblings, local travel", "manifest", "space"],
-  ["4th", "cancer", "water", "cardinal", "velocity", "Home, family, roots, endings", "manifest", "space"],
-  ["5th", "leo", "fire", "fixed", "force", "Children, creativity, pleasure, love affairs", "manifest", "space"],
-  ["6th", "virgo", "earth", "mutable", "energy", "Health, service, daily work, illness", "manifest", "space"],
-  ["7th", "libra", "air", "cardinal", "position", "Partnership, marriage, open enemies", "manifest", "space"],
-  ["8th", "scorpio", "water", "fixed", "momentum", "Death, shared resources, transformation", "manifest", "space"],
-  ["9th", "sagittarius", "fire", "mutable", "action", "Travel, philosophy, religion, higher learning", "manifest", "space"],
-  ["10th", "capricorn", "earth", "cardinal", "control", "Career, reputation, authority, public life", "manifest", "space"],
-  ["11th", "aquarius", "air", "fixed", "moment", "Friends, groups, hopes, benefactors", "manifest", "space"],
-  ["12th", "pisces", "water", "mutable", "inertia", "Hidden enemies, isolation, self-undoing, surrender", "manifest", "space"],
-]
-:put House { name => natural_sign, element, modality, dimension, description, phase, dignity }
-
-# ─── Aspect (5, Dignity-aligned) ─────────────────────────────────────
-# @0=space, @1=air, @2=fire, @3=water, @4=earth
-
-?[name, degrees, nature, description, phase, dignity] <- [
-  ["conjunction", 0, "fusion", "Unity — merging of principles", "manifest", "space"],
-  ["trine", 120, "flow", "Grace — same element, natural affinity", "manifest", "space"],
-  ["sextile", 60, "harmony", "Opportunity — compatible elements cooperate", "manifest", "space"],
-  ["square", 90, "tension", "Crisis — forced action, the T operator", "manifest", "space"],
-  ["opposition", 180, "polarity", "Awareness — complementary tension across the axis", "manifest", "space"],
-]
-:put Aspect { name => degrees, nature, description, phase, dignity }
-
-# AspectNature (5, Dignity-aligned)
-?[name, description, phase, dignity] <- [
-  ["fusion", "Conjunction — merging of energies", "manifest", "space"],
-  ["flow", "Trine — effortless grace", "manifest", "space"],
-  ["harmony", "Sextile — cooperative flow", "manifest", "space"],
-  ["tension", "Square — crisis and action", "manifest", "space"],
-  ["polarity", "Opposition — awareness through contrast", "manifest", "space"],
-]
-:put AspectNature { name => description, phase, dignity }
-
-# ─── Decan ───────────────────────────────────────────────────────────
-
-?[name, sign, ruler, ordinal, description, phase, dignity] <- [
-  ["aries-1", "aries", "mars", 1, "First decan of Aries — mars ruler (Chaldean)", "manifest", "space"],
-  ["aries-2", "aries", "sun", 2, "Second decan of Aries", "manifest", "space"],
-  ["aries-3", "aries", "venus", 3, "Third decan of Aries", "manifest", "space"],
-  ["taurus-1", "taurus", "mercury", 4, "First decan of Taurus", "manifest", "space"],
-  ["taurus-2", "taurus", "moon", 5, "Second decan of Taurus", "manifest", "space"],
-  ["taurus-3", "taurus", "saturn", 6, "Third decan of Taurus", "manifest", "space"],
-  ["gemini-1", "gemini", "jupiter", 7, "First decan of Gemini", "manifest", "space"],
-  ["gemini-2", "gemini", "mars", 8, "Second decan of Gemini", "manifest", "space"],
-  ["gemini-3", "gemini", "sun", 9, "Third decan of Gemini", "manifest", "space"],
-  ["cancer-1", "cancer", "venus", 10, "First decan of Cancer", "manifest", "space"],
-  ["cancer-2", "cancer", "mercury", 11, "Second decan of Cancer", "manifest", "space"],
-  ["cancer-3", "cancer", "moon", 12, "Third decan of Cancer", "manifest", "space"],
-  ["leo-1", "leo", "saturn", 13, "First decan of Leo", "manifest", "space"],
-  ["leo-2", "leo", "jupiter", 14, "Second decan of Leo", "manifest", "space"],
-  ["leo-3", "leo", "mars", 15, "Third decan of Leo", "manifest", "space"],
-  ["virgo-1", "virgo", "sun", 16, "First decan of Virgo", "manifest", "space"],
-  ["virgo-2", "virgo", "venus", 17, "Second decan of Virgo", "manifest", "space"],
-  ["virgo-3", "virgo", "mercury", 18, "Third decan of Virgo", "manifest", "space"],
-  ["libra-1", "libra", "moon", 19, "First decan of Libra", "manifest", "space"],
-  ["libra-2", "libra", "saturn", 20, "Second decan of Libra", "manifest", "space"],
-  ["libra-3", "libra", "jupiter", 21, "Third decan of Libra", "manifest", "space"],
-  ["scorpio-1", "scorpio", "mars", 22, "First decan of Scorpio", "manifest", "space"],
-  ["scorpio-2", "scorpio", "sun", 23, "Second decan of Scorpio", "manifest", "space"],
-  ["scorpio-3", "scorpio", "venus", 24, "Third decan of Scorpio", "manifest", "space"],
-  ["sagittarius-1", "sagittarius", "mercury", 25, "First decan of Sagittarius", "manifest", "space"],
-  ["sagittarius-2", "sagittarius", "moon", 26, "Second decan of Sagittarius", "manifest", "space"],
-  ["sagittarius-3", "sagittarius", "saturn", 27, "Third decan of Sagittarius", "manifest", "space"],
-  ["capricorn-1", "capricorn", "jupiter", 28, "First decan of Capricorn", "manifest", "space"],
-  ["capricorn-2", "capricorn", "mars", 29, "Second decan of Capricorn", "manifest", "space"],
-  ["capricorn-3", "capricorn", "sun", 30, "Third decan of Capricorn", "manifest", "space"],
-  ["aquarius-1", "aquarius", "venus", 31, "First decan of Aquarius", "manifest", "space"],
-  ["aquarius-2", "aquarius", "mercury", 32, "Second decan of Aquarius", "manifest", "space"],
-  ["aquarius-3", "aquarius", "moon", 33, "Third decan of Aquarius", "manifest", "space"],
-  ["pisces-1", "pisces", "saturn", 34, "First decan of Pisces", "manifest", "space"],
-  ["pisces-2", "pisces", "jupiter", 35, "Second decan of Pisces", "manifest", "space"],
-  ["pisces-3", "pisces", "mars", 36, "Third decan of Pisces", "manifest", "space"],
-]
-:put Decan { name => sign, ruler, ordinal, description, phase, dignity }
-
-# ─── Rulership ───────────────────────────────────────────────────────
-# dignity column uses the 5 elements:
-# space=domicile, air=exaltation, water=detriment, earth=fall
-
-?[sign, planet, dignity, phase] <- [
-  ["aries", "mars", "space", "manifest"],
-  ["aries", "sun", "air", "manifest"],
-  ["aries", "venus", "water", "manifest"],
-  ["aries", "saturn", "earth", "manifest"],
-  ["taurus", "venus", "space", "manifest"],
-  ["taurus", "moon", "air", "manifest"],
-  ["taurus", "mars", "water", "manifest"],
-  ["gemini", "mercury", "space", "manifest"],
-  ["gemini", "jupiter", "water", "manifest"],
-  ["cancer", "moon", "space", "manifest"],
-  ["cancer", "jupiter", "air", "manifest"],
-  ["cancer", "saturn", "water", "manifest"],
-  ["cancer", "mars", "earth", "manifest"],
-  ["leo", "sun", "space", "manifest"],
-  ["leo", "saturn", "water", "manifest"],
-  ["virgo", "mercury", "space", "manifest"],
-  ["virgo", "mercury", "air", "manifest"],
-  ["virgo", "jupiter", "water", "manifest"],
-  ["virgo", "venus", "earth", "manifest"],
-  ["libra", "venus", "space", "manifest"],
-  ["libra", "saturn", "air", "manifest"],
-  ["libra", "mars", "water", "manifest"],
-  ["libra", "sun", "earth", "manifest"],
-  ["scorpio", "mars", "space", "manifest"],
-  ["scorpio", "venus", "water", "manifest"],
-  ["scorpio", "moon", "earth", "manifest"],
-  ["sagittarius", "jupiter", "space", "manifest"],
-  ["sagittarius", "mercury", "water", "manifest"],
-  ["capricorn", "saturn", "space", "manifest"],
-  ["capricorn", "mars", "air", "manifest"],
-  ["capricorn", "moon", "water", "manifest"],
-  ["capricorn", "jupiter", "earth", "manifest"],
-  ["aquarius", "saturn", "space", "manifest"],
-  ["aquarius", "sun", "water", "manifest"],
-  ["pisces", "jupiter", "space", "manifest"],
-  ["pisces", "venus", "air", "manifest"],
-  ["pisces", "mercury", "water", "manifest"],
-  ["pisces", "mercury", "earth", "manifest"],
-]
-:put Rulership { sign, planet, dignity => phase }
-
-# ─── Condition ───────────────────────────────────────────────────────
-
-?[name, description, phase, dignity] <- [
-  ["direct", "Archetype moves forward in normal motion", "manifest", "space"],
-  ["retrograde", "Archetype appears to move backward — turned inward", "manifest", "space"],
-  ["stationary", "Archetype appears to stand still — concentrated power", "manifest", "space"],
-  ["oriental", "Archetype rises before the Sun — morning star", "manifest", "space"],
-  ["occidental", "Archetype sets after the Sun — evening star", "manifest", "space"],
-  ["combustion", "Archetype within 8.5 degrees of Sun — overwhelmed by solar light", "manifest", "space"],
-  ["under_beams", "Archetype within 17 degrees of Sun — hidden from view", "manifest", "space"],
-  ["cazimi", "Archetype within 17 minutes of Sun — in the heart of the Sun, empowered", "manifest", "space"],
-]
-:put Condition { name => description, phase, dignity }
+:put Polarity { name => luminary, description, phase, dignity }
 
 # ═══════════════════════════════════════════════════════════════════════
-# Structure
+# Structure domains
 # ═══════════════════════════════════════════════════════════════════════
 
 ?[name, description, phase, dignity] <- [
-  ["primitive", "Leaf scalar — resolved by Scalar (bool, int, domain, data)", "manifest", "space"],
-  ["enum", "Finite domain — discrete category with named variants", "manifest", "space"],
-  ["struct", "Product — Tesniere connexion, typed projections", "manifest", "space"],
-  ["union", "Coproduct — Tesniere junction, tagged alternatives", "manifest", "space"],
-  ["list", "Homogeneous sequence of typed elements", "manifest", "space"],
-  ["void", "Unit — carries no data", "manifest", "space"],
+  ["primitive", "Leaf scalar — resolved by Scalar (bool, int, domain, data)", "manifest", "eternal"],
+  ["enum", "Finite domain — discrete category with named variants", "manifest", "eternal"],
+  ["struct", "Product — Tesniere connexion, typed projections", "manifest", "eternal"],
+  ["union", "Coproduct — Tesniere junction, tagged alternatives", "manifest", "eternal"],
+  ["list", "Homogeneous sequence of typed elements", "manifest", "eternal"],
+  ["void", "Unit — carries no data", "manifest", "eternal"],
 ]
 :put Type { name => description, phase, dignity }
 
 # Scalar ordinal-aligned with Element: @0=fire, @1=earth, @2=air, @3=water
 ?[name, description, phase, dignity] <- [
-  ["domain", "Value is a discriminant of a finite domain enum", "manifest", "space"],
-  ["data", "Content-addressed bytes — Saturn archive via criome-stored", "manifest", "space"],
-  ["bool", "Boolean leaf — Dignaga pratyaksha: is or is-not", "manifest", "space"],
-  ["int", "Integer leaf qualified by Measure and Unit — Young geometry", "manifest", "space"],
+  ["domain", "Value is a discriminant of a finite domain enum", "manifest", "eternal"],
+  ["data", "Content-addressed bytes — Saturn archive via criome-stored", "manifest", "eternal"],
+  ["bool", "Boolean leaf — Dignaga pratyaksha: is or is-not", "manifest", "eternal"],
+  ["int", "Integer leaf qualified by Measure and Unit — Young geometry", "manifest", "eternal"],
 ]
 :put Scalar { name => description, phase, dignity }
 
 # Cardinality ordinal-aligned with Element: @0=fire, @1=earth, @2=air, @3=water
 ?[name, description, phase, dignity] <- [
-  ["one", "Exactly one value — required field", "manifest", "space"],
-  ["map", "Key-value pairs — associative", "manifest", "space"],
-  ["many", "Zero or more values — list", "manifest", "space"],
-  ["optional", "Zero or one value", "manifest", "space"],
+  ["one", "Exactly one value — required field", "manifest", "eternal"],
+  ["map", "Key-value pairs — associative", "manifest", "eternal"],
+  ["many", "Zero or more values — list", "manifest", "eternal"],
+  ["optional", "Zero or one value", "manifest", "eternal"],
 ]
 :put Cardinality { name => description, phase, dignity }
 
 # Direction ordinal-aligned with Polarity: @0=diurnal, @1=nocturnal
 ?[name, description, phase, dignity] <- [
-  ["request", "Input parameters of an RPC method", "manifest", "space"],
-  ["response", "Output values of an RPC method", "manifest", "space"],
+  ["request", "Input parameters of an RPC method", "manifest", "eternal"],
+  ["response", "Output values of an RPC method", "manifest", "eternal"],
 ]
 :put Direction { name => description, phase, dignity }
 
-# ─── Unit sub-domains ────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════
+# Unit sub-domains
+# ═══════════════════════════════════════════════════════════════════════
 
 ?[name, description, phase, dignity] <- [
-  ["second", "SI base unit of time", "manifest", "space"],
-  ["minute", "60 seconds", "manifest", "space"],
-  ["hour", "3600 seconds", "manifest", "space"],
-  ["day", "86400 seconds", "manifest", "space"],
-  ["year", "365.25 days", "manifest", "space"],
-  ["epoch_ms", "Milliseconds since Unix epoch", "manifest", "space"],
+  ["second", "SI base unit of time", "manifest", "eternal"],
+  ["minute", "60 seconds", "manifest", "eternal"],
+  ["hour", "3600 seconds", "manifest", "eternal"],
+  ["day", "86400 seconds", "manifest", "eternal"],
+  ["year", "365.25 days", "manifest", "eternal"],
+  ["epoch_ms", "Milliseconds since Unix epoch", "manifest", "eternal"],
 ]
 :put TimeUnit { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["ordinal", "0-indexed position rendered as 1st, 2nd, 3rd", "manifest", "space"],
-  ["byte_offset", "Position in bytes from start", "manifest", "space"],
-  ["line", "Line number (1-indexed)", "manifest", "space"],
-  ["index", "0-indexed array/list position", "manifest", "space"],
+  ["ordinal", "0-indexed position rendered as 1st, 2nd, 3rd", "manifest", "eternal"],
+  ["byte_offset", "Position in bytes from start", "manifest", "eternal"],
+  ["line", "Line number (1-indexed)", "manifest", "eternal"],
+  ["index", "0-indexed array/list position", "manifest", "eternal"],
 ]
 :put PositionUnit { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["count", "Dimensionless count", "manifest", "space"],
-  ["row_count", "Number of database rows", "manifest", "space"],
-  ["arity", "Number of columns in a relation", "manifest", "space"],
+  ["count", "Dimensionless count", "manifest", "eternal"],
+  ["row_count", "Number of database rows", "manifest", "eternal"],
+  ["arity", "Number of columns in a relation", "manifest", "eternal"],
 ]
 :put CountUnit { name => description, phase, dignity }
 
 ?[name, description, phase, dignity] <- [
-  ["byte", "Single byte", "manifest", "space"],
-  ["kilobyte", "1024 bytes", "manifest", "space"],
-  ["megabyte", "1048576 bytes", "manifest", "space"],
+  ["byte", "Single byte", "manifest", "eternal"],
+  ["kilobyte", "1024 bytes", "manifest", "eternal"],
+  ["megabyte", "1048576 bytes", "manifest", "eternal"],
 ]
 :put SizeUnit { name => description, phase, dignity }
 
-?[measure, unit, phase, dignity] <- [
-  ["L", "PositionUnit", "manifest", "air"],
-  ["L/T", "TimeUnit", "manifest", "air"],
-  ["L/T²", "TimeUnit", "manifest", "air"],
-  ["L/T³", "TimeUnit", "manifest", "air"],
-  ["ML", "CountUnit", "manifest", "air"],
-  ["ML/T", "CountUnit", "manifest", "air"],
-  ["ML/T²", "CountUnit", "manifest", "air"],
-  ["ML/T³", "SizeUnit", "manifest", "air"],
-  ["ML²", "SizeUnit", "manifest", "air"],
-  ["ML²/T", "TimeUnit", "manifest", "air"],
-  ["ML²/T²", "SizeUnit", "manifest", "air"],
-  ["ML²/T³", "SizeUnit", "manifest", "air"],
+?[measure, unit_domain, phase, dignity] <- [
+  ["L", "PositionUnit", "manifest", "proven"],
+  ["L/T", "TimeUnit", "manifest", "proven"],
+  ["L/T²", "TimeUnit", "manifest", "proven"],
+  ["L/T³", "TimeUnit", "manifest", "proven"],
+  ["ML", "CountUnit", "manifest", "proven"],
+  ["ML/T", "CountUnit", "manifest", "proven"],
+  ["ML/T²", "CountUnit", "manifest", "proven"],
+  ["ML/T³", "SizeUnit", "manifest", "proven"],
+  ["ML²", "SizeUnit", "manifest", "proven"],
+  ["ML²/T", "TimeUnit", "manifest", "proven"],
+  ["ML²/T²", "SizeUnit", "manifest", "proven"],
+  ["ML²/T³", "SizeUnit", "manifest", "proven"],
 ]
-:put measure_unit { measure => unit, phase, dignity }
+:put measure_unit { measure => unit_domain, phase, dignity }
 
 # ═══════════════════════════════════════════════════════════════════════
 # Name — universal label registry + generator correspondence
 # ═══════════════════════════════════════════════════════════════════════
 
-# Name domain variants — all context-specific labels from sema-core domains
 ?[name, description, phase, dignity] <- [
-  ["becoming", "Phase @0 = Modality cardinal: initiating lifecycle", "manifest", "space"],
-  ["manifest", "Phase @1 = Modality fixed: sustaining lifecycle", "manifest", "space"],
-  ["retired", "Phase @2 = Modality mutable: transforming lifecycle", "manifest", "space"],
-  ["bijective", "Functor @0 = Modality cardinal: reversible mapping", "manifest", "space"],
-  ["deterministic", "Functor @1 = Modality fixed: stable mapping", "manifest", "space"],
-  ["tradition_dependent", "Functor @2 = Modality mutable: contextual mapping", "manifest", "space"],
-  ["domain", "Scalar @0 = Element fire: pure identity discriminant", "manifest", "space"],
-  ["data", "Scalar @1 = Element earth: material bytes", "manifest", "space"],
-  ["bool", "Scalar @2 = Element air: binary relation", "manifest", "space"],
-  ["int", "Scalar @3 = Element water: measured quantity", "manifest", "space"],
-  ["one", "Cardinality @0 = Element fire: singular required", "manifest", "space"],
-  ["map", "Cardinality @1 = Element earth: structured association", "manifest", "space"],
-  ["many", "Cardinality @2 = Element air: multiple relations", "manifest", "space"],
-  ["optional", "Cardinality @3 = Element water: may flow or not", "manifest", "space"],
-  ["request", "Direction @0 = Polarity diurnal: outgoing", "manifest", "space"],
-  ["response", "Direction @1 = Polarity nocturnal: incoming", "manifest", "space"],
-  ["fusion", "AspectNature @0 = Dignity space: merging", "manifest", "space"],
-  ["flow", "AspectNature @1 = Dignity air: effortless", "manifest", "space"],
-  ["harmony", "AspectNature @2 = Dignity fire: cooperative", "manifest", "space"],
-  ["tension", "AspectNature @3 = Dignity water: crisis", "manifest", "space"],
-  ["polarity", "AspectNature @4 = Dignity earth: contrast", "manifest", "space"],
+  ["becoming", "Phase @0 = Modality cardinal", "manifest", "eternal"],
+  ["manifest", "Phase @1 = Modality fixed", "manifest", "eternal"],
+  ["retired", "Phase @2 = Modality mutable", "manifest", "eternal"],
+  ["bijective", "Functor @0 = Modality cardinal", "manifest", "eternal"],
+  ["deterministic", "Functor @1 = Modality fixed", "manifest", "eternal"],
+  ["tradition_dependent", "Functor @2 = Modality mutable", "manifest", "eternal"],
+  ["domain", "Scalar @0 = Element fire", "manifest", "eternal"],
+  ["data", "Scalar @1 = Element earth", "manifest", "eternal"],
+  ["bool", "Scalar @2 = Element air", "manifest", "eternal"],
+  ["int", "Scalar @3 = Element water", "manifest", "eternal"],
+  ["one", "Cardinality @0 = Element fire", "manifest", "eternal"],
+  ["map", "Cardinality @1 = Element earth", "manifest", "eternal"],
+  ["many", "Cardinality @2 = Element air", "manifest", "eternal"],
+  ["optional", "Cardinality @3 = Element water", "manifest", "eternal"],
+  ["request", "Direction @0 = Polarity diurnal", "manifest", "eternal"],
+  ["response", "Direction @1 = Polarity nocturnal", "manifest", "eternal"],
 ]
 :put Name { name => description, phase, dignity }
 
-# name mapping — connects domain variants to generator positions
 ?[domain, variant, generator, position, phase, dignity] <- [
-  ["Phase", "becoming", "Modality", "cardinal", "manifest", "space"],
-  ["Phase", "manifest", "Modality", "fixed", "manifest", "space"],
-  ["Phase", "retired", "Modality", "mutable", "manifest", "space"],
-  ["Functor", "bijective", "Modality", "cardinal", "manifest", "space"],
-  ["Functor", "deterministic", "Modality", "fixed", "manifest", "space"],
-  ["Functor", "tradition_dependent", "Modality", "mutable", "manifest", "space"],
-  ["Scalar", "domain", "Element", "fire", "manifest", "space"],
-  ["Scalar", "data", "Element", "earth", "manifest", "space"],
-  ["Scalar", "bool", "Element", "air", "manifest", "space"],
-  ["Scalar", "int", "Element", "water", "manifest", "space"],
-  ["Cardinality", "one", "Element", "fire", "manifest", "space"],
-  ["Cardinality", "map", "Element", "earth", "manifest", "space"],
-  ["Cardinality", "many", "Element", "air", "manifest", "space"],
-  ["Cardinality", "optional", "Element", "water", "manifest", "space"],
-  ["Direction", "request", "Polarity", "diurnal", "manifest", "space"],
-  ["Direction", "response", "Polarity", "nocturnal", "manifest", "space"],
-  ["AspectNature", "fusion", "Dignity", "space", "manifest", "space"],
-  ["AspectNature", "flow", "Dignity", "air", "manifest", "space"],
-  ["AspectNature", "harmony", "Dignity", "fire", "manifest", "space"],
-  ["AspectNature", "tension", "Dignity", "water", "manifest", "space"],
-  ["AspectNature", "polarity", "Dignity", "earth", "manifest", "space"],
+  ["Phase", "becoming", "Modality", "cardinal", "manifest", "eternal"],
+  ["Phase", "manifest", "Modality", "fixed", "manifest", "eternal"],
+  ["Phase", "retired", "Modality", "mutable", "manifest", "eternal"],
+  ["Functor", "bijective", "Modality", "cardinal", "manifest", "eternal"],
+  ["Functor", "deterministic", "Modality", "fixed", "manifest", "eternal"],
+  ["Functor", "tradition_dependent", "Modality", "mutable", "manifest", "eternal"],
+  ["Scalar", "domain", "Element", "fire", "manifest", "eternal"],
+  ["Scalar", "data", "Element", "earth", "manifest", "eternal"],
+  ["Scalar", "bool", "Element", "air", "manifest", "eternal"],
+  ["Scalar", "int", "Element", "water", "manifest", "eternal"],
+  ["Cardinality", "one", "Element", "fire", "manifest", "eternal"],
+  ["Cardinality", "map", "Element", "earth", "manifest", "eternal"],
+  ["Cardinality", "many", "Element", "air", "manifest", "eternal"],
+  ["Cardinality", "optional", "Element", "water", "manifest", "eternal"],
+  ["Direction", "request", "Polarity", "diurnal", "manifest", "eternal"],
+  ["Direction", "response", "Polarity", "nocturnal", "manifest", "eternal"],
 ]
-:put name { domain, variant, generator, position => phase, dignity }
+:put name_map { domain, variant, generator, position => phase, dignity }
 
 # ═══════════════════════════════════════════════════════════════════════
-# Morphisms — structural connections between domains
+# Morphisms — generator alignment for NEW domains
+# (Old-stack morphisms already exist from samskara)
 # ═══════════════════════════════════════════════════════════════════════
 
-?[source, target, via, functor, description, phase, dignity] <- [
-  ["Sign", "Element", "element", "deterministic", "Each sign has exactly one element", "manifest", "space"],
-  ["Sign", "Modality", "modality", "deterministic", "Each sign has exactly one modality", "manifest", "space"],
-  ["Sign", "Archetype", "ruler", "tradition_dependent", "Domicile rulership — traditional scheme", "manifest", "space"],
-  ["Measure", "Sign", "sign", "bijective", "Each measure maps 1:1 to a sign", "manifest", "space"],
-  ["Measure", "Dimension", "dimension", "bijective", "Each measure maps to a named dimension", "manifest", "space"],
-  ["Measure", "Element", "element", "deterministic", "Inherited from sign-element mapping", "manifest", "space"],
-  ["Measure", "Modality", "modality", "deterministic", "Inherited from sign-modality mapping", "manifest", "space"],
-  ["Dimension", "Measure", "formula", "bijective", "Inverse of Measure-Dimension", "manifest", "space"],
-  ["House", "Sign", "natural_sign", "bijective", "Each house maps to its natural sign", "manifest", "space"],
-  ["House", "Element", "element", "deterministic", "Houses inherit element from natural sign", "manifest", "space"],
-  ["House", "Modality", "modality", "deterministic", "Angular=cardinal, succedent=fixed, cadent=mutable", "manifest", "space"],
-  ["House", "Dimension", "dimension", "bijective", "Young 12-fold mapping: house to physics dimension", "manifest", "space"],
-  ["Decan", "Sign", "sign", "deterministic", "Each decan belongs to one sign", "manifest", "space"],
-  ["Decan", "Archetype", "ruler", "deterministic", "Chaldean order planetary ruler", "manifest", "space"],
-  ["Aspect", "AspectNature", "nature", "deterministic", "Each aspect has one nature", "manifest", "space"],
-  ["Polarity", "Archetype", "luminary", "deterministic", "Polarity luminary is an archetype", "manifest", "space"],
-  ["Rulership", "Sign", "sign", "deterministic", "Each rulership row belongs to one sign", "manifest", "space"],
-  ["Rulership", "Archetype", "planet", "deterministic", "Each rulership row belongs to one archetype", "manifest", "space"],
-  ["Rulership", "Dignity", "dignity", "deterministic", "Each rulership has a dignity level", "manifest", "space"],
-  ["Scalar", "Element", "generator", "deterministic", "4-domain aligned with Element", "manifest", "space"],
-  ["Cardinality", "Element", "generator", "deterministic", "4-domain aligned with Element", "manifest", "space"],
-  ["Direction", "Polarity", "generator", "deterministic", "2-domain aligned with Polarity", "manifest", "space"],
-  ["Phase", "Modality", "generator", "deterministic", "3-domain aligned with Modality", "manifest", "space"],
-  ["Functor", "Modality", "generator", "deterministic", "3-domain aligned with Modality", "manifest", "space"],
-  ["AspectNature", "Dignity", "generator", "deterministic", "5-domain aligned with Dignity", "manifest", "space"],
+?[source, target, via, functor_type, description, phase, dignity] <- [
+  ["Scalar", "Element", "generator", "deterministic", "4-domain aligned with Element", "manifest", "eternal"],
+  ["Cardinality", "Element", "generator", "deterministic", "4-domain aligned with Element", "manifest", "eternal"],
+  ["Direction", "Polarity", "generator", "deterministic", "2-domain aligned with Polarity", "manifest", "eternal"],
+  ["Phase", "Modality", "generator", "deterministic", "3-domain aligned with Modality", "manifest", "eternal"],
+  ["Polarity", "Archetype", "luminary", "deterministic", "Polarity luminary is an archetype", "manifest", "eternal"],
 ]
-:put morphism { source, target, via => functor, description, phase, dignity }
+:put morphism { source, target, via => functor_type, description, phase, dignity }

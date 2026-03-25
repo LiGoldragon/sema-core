@@ -4,103 +4,18 @@
 # Ordinal alignment: every domain's variant order matches its generator.
 # @1 in ANY 3-domain = the same energetic quality (fixed/sustaining).
 # Name domain records the correspondence between domain variants and generator positions.
-# No Rust yet — CozoScript schemas only. Rust VCS/boot rewrite comes later.
-# Load order: sema-core -> sema -> noesis
+#
+# COEXISTENCE: When loaded after samskara-core, only NEW relations are created.
+# Phase, Dignity, Domain, morphism, Functor, Element, Modality, Sign, Measure,
+# Dimension, House, Aspect, AspectNature, Decan, Rulership, Condition already
+# exist from the old stack. Sema-core seeds (:put) into them but does not re-create.
+# Load order: samskara-core -> samskara -> sema-core -> sema -> noesis-schema
 
 # ═══════════════════════════════════════════════════════════════════════
-# PILLAR 1 — Phase & Dignity (how facts exist)
-# The two primordial domains. They do not carry phase/dignity columns
-# because they ARE phase and dignity.
+# NEW relations only — not in the old stack
 # ═══════════════════════════════════════════════════════════════════════
 
-:create Phase {
-  name: String =>
-  glyph: String,
-  in_world_hash: Bool,
-  description: String
-}
-
-:create Dignity {
-  name: String =>
-  rank: Int,
-  description: String
-}
-
-# ═══════════════════════════════════════════════════════════════════════
-# META — Domain registry and morphisms
-# Domain self-registers all controlled vocabularies.
-# Morphism records structural connections between domains.
-# ═══════════════════════════════════════════════════════════════════════
-
-:create Domain {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create morphism {
-  source: String,
-  target: String,
-  via: String =>
-  functor: String,
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create Functor {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ═══════════════════════════════════════════════════════════════════════
-# ESTAR — The energetic being-quality layer
-# From Latin stare (to stand), resonating with aster (star).
-# How well does this thing stand where it stands?
-# Four prime generators: Polarity(2), Modality(3), Dignity(5), Archetype(7).
-# Derived: Element=2², Sign=2²×3, Decan=2²×3², 360°=2³×3²×5.
-# Every TypedInt carries a Measure. Every Measure carries a Sign.
-# The LLM walks morphism chains to infer qualitative signatures.
-# ═══════════════════════════════════════════════════════════════════════
-
-# ─── The Four Elements ───────────────────────────────────────────────
-
-:create Element {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── The Three Modalities ────────────────────────────────────────────
-
-:create Modality {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── The Twelve Signs ────────────────────────────────────────────────
-
-:create Sign {
-  name: String =>
-  glyph: String,
-  element: String,
-  modality: String,
-  house: Int,
-  ruler: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── The Seven Archetypes ────────────────────────────────────────────
-# Irreducible forces/stages of process (Young). The planets are the
-# astrological reading. 7 is prime — cannot be derived from 2, 3, or 5.
-
+# Archetype (was Planet in old stack — new name, same schema)
 :create Archetype {
   name: String =>
   glyph: String,
@@ -110,90 +25,7 @@
   dignity: String
 }
 
-# ─── Young's Twelve Measure Formulae ─────────────────────────────────
-# The Rosetta Stone: zodiac = physics. Each row maps a sign to its
-# dimensional formula, physical meaning, and psychological correlate.
-
-:create Measure {
-  sign: String =>
-  formula: String,
-  element: String,
-  modality: String,
-  dimension: String,
-  physical: String,
-  psychological: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── The Twelve Dimensions ───────────────────────────────────────────
-
-:create Dimension {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── The Twelve Houses ───────────────────────────────────────────────
-
-:create House {
-  name: String =>
-  natural_sign: String,
-  element: String,
-  modality: String,
-  dimension: String,
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── Aspects (geometric relationships) ───────────────────────────────
-
-:create Aspect {
-  name: String =>
-  degrees: Int,
-  nature: String,
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create AspectNature {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── Thirty-Six Decans ──────────────────────────────────────────────
-
-:create Decan {
-  name: String =>
-  sign: String,
-  ruler: String,
-  ordinal: Int,
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── Planet-Sign Dignity Assignments ─────────────────────────────────
-# dignity column references Dignity (5 elements).
-# space=domicile, air=exaltation, fire=triplicity, water=bound, earth=face.
-
-:create Rulership {
-  sign: String,
-  planet: String,
-  dignity: String =>
-  phase: String
-}
-
-# ─── Polarity and Condition ───────────────────────────────────────────
-# Polarity(2) is the first prime generator. Sect (diurnal/nocturnal) is
-# the astrological reading. Direction (request/response) is the protocol reading.
-# Element = Polarity × Polarity. All binary distinctions are Polarity.
-
+# Polarity (was Sect in old stack — new name, same schema)
 :create Polarity {
   name: String =>
   luminary: String,
@@ -202,42 +34,8 @@
   dignity: String
 }
 
-:create Condition {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
+# ─── Structure (new in sema-core) ────────────────────────────────────
 
-# ═══════════════════════════════════════════════════════════════════════
-# NAME — universal label registry + generator correspondence
-# Every context-specific variant label is a Name variant (capnp enum).
-# The name mapping relation connects domain variants to generator positions.
-# ═══════════════════════════════════════════════════════════════════════
-
-:create Name {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create name {
-  domain: String,
-  variant: String,
-  generator: String,
-  position: String =>
-  phase: String,
-  dignity: String
-}
-
-# ═══════════════════════════════════════════════════════════════════════
-# Structure (how schemas self-describe)
-# The vocabulary for describing any typed schema.
-# AMOP metaclass pattern: closes at 2 meta-levels.
-# ═══════════════════════════════════════════════════════════════════════
-
-# What structural form a type has (Sowa lattice atoms)
 :create Type {
   name: String =>
   description: String,
@@ -245,7 +43,6 @@
   dignity: String
 }
 
-# What leaf scalar a field carries (Dignaga three leaves + domain)
 :create Scalar {
   name: String =>
   description: String,
@@ -253,25 +50,12 @@
   dignity: String
 }
 
-# How many values a field holds
 :create Cardinality {
   name: String =>
   description: String,
   phase: String,
   dignity: String
 }
-
-# Which way data flows
-:create Direction {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-# ─── The field relation (column -> scalar classification) ────────────
-# Replaces noesis-schema field_type. Maps every (relation, column)
-# to its resolved scalar type. The foundation of capnp codegen.
 
 :create field {
   relation: String,
@@ -285,7 +69,6 @@
 }
 
 # ─── Self-describing schema relations ────────────────────────────────
-# Layer 2: capnp in capnp. The LLM queries these to learn types on demand.
 
 :create schema_entry {
   schema: String,
@@ -339,43 +122,17 @@
   dignity: String
 }
 
-# ─── Measure-to-Unit mapping ────────────────────────────────────────
-# Links each Measure dimension formula to its Unit domain.
-# Absorbed from noesis-schema.
+# ─── name mapping (NEW — not in noesis-schema) ──────────────────────
+# Name domain is created by noesis-schema. This is the mapping relation.
 
-:create measure_unit {
-  measure: String =>
-  unit: String,
+:create name_map {
+  domain: String,
+  variant: String,
+  generator: String,
+  position: String =>
   phase: String,
   dignity: String
 }
 
-# ─── Unit sub-domains ────────────────────────────────────────────────
-
-:create TimeUnit {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create PositionUnit {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create CountUnit {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
-
-:create SizeUnit {
-  name: String =>
-  description: String,
-  phase: String,
-  dignity: String
-}
+# Direction, Name, measure_unit, TimeUnit, PositionUnit, CountUnit, SizeUnit
+# are created by noesis-schema (loaded after sema-core). Seeds are in sema-core-seed.

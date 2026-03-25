@@ -1,256 +1,109 @@
-# Sema Core — Field Classifications
-# Maps every column of every sema-core relation to its scalar type.
-# scalar: domain | bool | int | data
-# target: Domain name (when scalar=domain), Measure formula (when scalar=int)
-# unit: Unit domain name (when scalar=int)
+# Sema Core — Field Classifications (NEW relations only)
+# Old-stack relations are classified by noesis-schema/noesis-field-type-seed.cozo.
+# This file classifies only sema-core's new relations.
 
-# ═══════════════════════════════════════════════════════════════════════
-# PILLAR 1 — Phase & Dignity (no phase/dignity columns — they ARE those)
-# ═══════════════════════════════════════════════════════════════════════
-
-?[relation, column, scalar, target, unit, description, phase, dignity] <- [
-  ["Phase", "name", "data", "", "", "Phase variant name", "manifest", "space"],
-  ["Phase", "glyph", "data", "", "", "Unicode glyph", "manifest", "space"],
-  ["Phase", "in_world_hash", "bool", "", "", "Whether included in world hash", "manifest", "space"],
-  ["Phase", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-
-  ["Dignity", "name", "data", "", "", "Dignity variant name", "manifest", "space"],
-  ["Dignity", "rank", "int", "L", "PositionUnit", "Trust ordering (0=highest)", "manifest", "space"],
-  ["Dignity", "description", "data", "", "", "Human-readable description", "manifest", "space"],
+?[relation, column, kind, target_domain, unit_domain, description, phase, dignity] <- [
+  ["Archetype", "name", "data", "", "", "Archetype name", "manifest", "eternal"],
+  ["Archetype", "glyph", "data", "", "", "Unicode glyph", "manifest", "eternal"],
+  ["Archetype", "stage", "int", "L", "PositionUnit", "Young process stage", "manifest", "eternal"],
+  ["Archetype", "freedom", "int", "ML/T^2", "CountUnit", "Degrees of freedom", "manifest", "eternal"],
+  ["Archetype", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Archetype", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["Polarity", "name", "data", "", "", "Polarity variant", "manifest", "eternal"],
+  ["Polarity", "luminary", "domain", "Archetype", "", "Sect luminary", "manifest", "eternal"],
+  ["Polarity", "description", "data", "", "", "Meaning", "manifest", "eternal"],
+  ["Polarity", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Polarity", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["Type", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Type", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["Type", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Type", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["Scalar", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Scalar", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["Scalar", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Scalar", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["Cardinality", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Cardinality", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["Cardinality", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Cardinality", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["Direction", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["Direction", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["Direction", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Direction", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["field", "relation", "data", "", "", "Relation name", "manifest", "eternal"],
+  ["field", "column", "data", "", "", "Column name", "manifest", "eternal"],
+  ["field", "scalar", "domain", "Scalar", "", "Leaf scalar type", "manifest", "eternal"],
+  ["field", "target", "data", "", "", "Domain name or Measure formula", "manifest", "eternal"],
+  ["field", "unit", "data", "", "", "Unit domain name", "manifest", "eternal"],
+  ["field", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["field", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["field", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["Name", "name", "data", "", "", "Label name", "manifest", "eternal"],
+  ["Name", "description", "data", "", "", "Generator correspondence", "manifest", "eternal"],
+  ["Name", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["Name", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["name_map", "domain", "domain", "Domain", "", "Source domain", "manifest", "eternal"],
+  ["name_map", "variant", "data", "", "", "Variant in source domain", "manifest", "eternal"],
+  ["name_map", "generator", "domain", "Domain", "", "Generator domain", "manifest", "eternal"],
+  ["name_map", "position", "data", "", "", "Position in generator", "manifest", "eternal"],
+  ["name_map", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["name_map", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["schema_entry", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_entry", "name", "data", "", "", "Entry identifier", "manifest", "eternal"],
+  ["schema_entry", "structure", "domain", "Type", "", "Structural form", "manifest", "eternal"],
+  ["schema_entry", "ordinal", "int", "L", "PositionUnit", "Position", "manifest", "eternal"],
+  ["schema_entry", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_entry", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["schema_field", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_field", "owner", "data", "", "", "Owning entry", "manifest", "eternal"],
+  ["schema_field", "name", "data", "", "", "Field identifier", "manifest", "eternal"],
+  ["schema_field", "structure", "domain", "Type", "", "Structural form", "manifest", "eternal"],
+  ["schema_field", "target", "data", "", "", "Reference", "manifest", "eternal"],
+  ["schema_field", "ordinal", "int", "L", "PositionUnit", "Capnp ordinal", "manifest", "eternal"],
+  ["schema_field", "cardinality", "domain", "Cardinality", "", "Multiplicity", "manifest", "eternal"],
+  ["schema_field", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_field", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["schema_variant", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_variant", "owner", "data", "", "", "Owning enum", "manifest", "eternal"],
+  ["schema_variant", "name", "data", "", "", "Variant identifier", "manifest", "eternal"],
+  ["schema_variant", "ordinal", "int", "L", "PositionUnit", "Discriminant", "manifest", "eternal"],
+  ["schema_variant", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_variant", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["schema_method", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_method", "interface", "data", "", "", "Interface identifier", "manifest", "eternal"],
+  ["schema_method", "name", "data", "", "", "Method identifier", "manifest", "eternal"],
+  ["schema_method", "ordinal", "int", "L", "PositionUnit", "Method ordinal", "manifest", "eternal"],
+  ["schema_method", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_method", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["schema_param", "schema", "data", "", "", "Schema identifier", "manifest", "eternal"],
+  ["schema_param", "interface", "data", "", "", "Interface identifier", "manifest", "eternal"],
+  ["schema_param", "method", "data", "", "", "Method identifier", "manifest", "eternal"],
+  ["schema_param", "name", "data", "", "", "Parameter identifier", "manifest", "eternal"],
+  ["schema_param", "direction", "domain", "Direction", "", "Request or response", "manifest", "eternal"],
+  ["schema_param", "structure", "domain", "Type", "", "Structural form", "manifest", "eternal"],
+  ["schema_param", "target", "data", "", "", "Reference", "manifest", "eternal"],
+  ["schema_param", "ordinal", "int", "L", "PositionUnit", "Parameter ordinal", "manifest", "eternal"],
+  ["schema_param", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["schema_param", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["measure_unit", "measure", "data", "", "", "Measure formula", "manifest", "eternal"],
+  ["measure_unit", "unit", "domain", "Domain", "", "Unit domain", "manifest", "eternal"],
+  ["measure_unit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["measure_unit", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["TimeUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["TimeUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["TimeUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["TimeUnit", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["PositionUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["PositionUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["PositionUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["PositionUnit", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["CountUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["CountUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["CountUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["CountUnit", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
+  ["SizeUnit", "name", "data", "", "", "Variant name", "manifest", "eternal"],
+  ["SizeUnit", "description", "data", "", "", "Description", "manifest", "eternal"],
+  ["SizeUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "eternal"],
+  ["SizeUnit", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "eternal"],
 ]
-:put field { relation, column => scalar, target, unit, description, phase, dignity }
-
-# ═══════════════════════════════════════════════════════════════════════
-# META — Domain, Functor, morphism
-# ═══════════════════════════════════════════════════════════════════════
-
-?[relation, column, scalar, target, unit, description, phase, dignity] <- [
-  ["Domain", "name", "data", "", "", "Domain name", "manifest", "space"],
-  ["Domain", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["Domain", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Domain", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Functor", "name", "data", "", "", "Functor variant name", "manifest", "space"],
-  ["Functor", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["Functor", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Functor", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["morphism", "source", "domain", "Domain", "", "Source domain", "manifest", "space"],
-  ["morphism", "target", "domain", "Domain", "", "Target domain", "manifest", "space"],
-  ["morphism", "via", "data", "", "", "Morphism name/role", "manifest", "space"],
-  ["morphism", "functor", "domain", "Functor", "", "Mapping type", "manifest", "space"],
-  ["morphism", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["morphism", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["morphism", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-]
-:put field { relation, column => scalar, target, unit, description, phase, dignity }
-
-# ═══════════════════════════════════════════════════════════════════════
-# PILLAR 2 — Astrality domains
-# Standard pattern: name=data, description=data, phase=Phase, dignity=Dignity
-# Plus domain-specific columns
-# ═══════════════════════════════════════════════════════════════════════
-
-?[relation, column, scalar, target, unit, description, phase, dignity] <- [
-  ["Element", "name", "data", "", "", "Element name", "manifest", "space"],
-  ["Element", "description", "data", "", "", "Qualitative meaning", "manifest", "space"],
-  ["Element", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Element", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Modality", "name", "data", "", "", "Modality name", "manifest", "space"],
-  ["Modality", "description", "data", "", "", "Qualitative meaning", "manifest", "space"],
-  ["Modality", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Modality", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Sign", "name", "data", "", "", "Sign name", "manifest", "space"],
-  ["Sign", "glyph", "data", "", "", "Unicode glyph", "manifest", "space"],
-  ["Sign", "element", "domain", "Element", "", "Classical element", "manifest", "space"],
-  ["Sign", "modality", "domain", "Modality", "", "Cardinal/fixed/mutable", "manifest", "space"],
-  ["Sign", "house", "int", "L", "PositionUnit", "Natural house number", "manifest", "space"],
-  ["Sign", "ruler", "domain", "Archetype", "", "Domicile ruler", "manifest", "space"],
-  ["Sign", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Sign", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Archetype", "name", "data", "", "", "Planet name", "manifest", "space"],
-  ["Archetype", "glyph", "data", "", "", "Unicode glyph", "manifest", "space"],
-  ["Archetype", "stage", "int", "L", "PositionUnit", "Young process stage", "manifest", "space"],
-  ["Archetype", "freedom", "int", "ML/T²", "CountUnit", "Degrees of freedom", "manifest", "space"],
-  ["Archetype", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Archetype", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Measure", "sign", "domain", "Sign", "", "Zodiacal sign", "manifest", "space"],
-  ["Measure", "formula", "data", "", "", "Dimensional formula (L, M, T)", "manifest", "space"],
-  ["Measure", "element", "domain", "Element", "", "Inherited element", "manifest", "space"],
-  ["Measure", "modality", "domain", "Modality", "", "Inherited modality", "manifest", "space"],
-  ["Measure", "dimension", "domain", "Dimension", "", "Named dimension", "manifest", "space"],
-  ["Measure", "physical", "data", "", "", "Physical quantity name", "manifest", "space"],
-  ["Measure", "psychological", "data", "", "", "Psychological correlate", "manifest", "space"],
-  ["Measure", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Measure", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Dimension", "name", "data", "", "", "Dimension name", "manifest", "space"],
-  ["Dimension", "description", "data", "", "", "Derivative order description", "manifest", "space"],
-  ["Dimension", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Dimension", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["House", "name", "data", "", "", "House ordinal", "manifest", "space"],
-  ["House", "natural_sign", "domain", "Sign", "", "Natural zodiacal sign", "manifest", "space"],
-  ["House", "element", "domain", "Element", "", "Inherited element", "manifest", "space"],
-  ["House", "modality", "domain", "Modality", "", "Angular/succedent/cadent", "manifest", "space"],
-  ["House", "dimension", "domain", "Dimension", "", "Young dimension mapping", "manifest", "space"],
-  ["House", "description", "data", "", "", "Life area description", "manifest", "space"],
-  ["House", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["House", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Aspect", "name", "data", "", "", "Aspect name", "manifest", "space"],
-  ["Aspect", "degrees", "int", "L", "PositionUnit", "Angular separation", "manifest", "space"],
-  ["Aspect", "nature", "domain", "AspectNature", "", "Qualitative nature", "manifest", "space"],
-  ["Aspect", "description", "data", "", "", "Meaning", "manifest", "space"],
-  ["Aspect", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Aspect", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["AspectNature", "name", "data", "", "", "Nature variant", "manifest", "space"],
-  ["AspectNature", "description", "data", "", "", "Qualitative meaning", "manifest", "space"],
-  ["AspectNature", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["AspectNature", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Decan", "name", "data", "", "", "Decan identifier", "manifest", "space"],
-  ["Decan", "sign", "domain", "Sign", "", "Parent sign", "manifest", "space"],
-  ["Decan", "ruler", "domain", "Archetype", "", "Chaldean ruler", "manifest", "space"],
-  ["Decan", "ordinal", "int", "L", "PositionUnit", "Position 1-36", "manifest", "space"],
-  ["Decan", "description", "data", "", "", "Decan description", "manifest", "space"],
-  ["Decan", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Decan", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Rulership", "sign", "domain", "Sign", "", "Zodiacal sign", "manifest", "space"],
-  ["Rulership", "planet", "domain", "Archetype", "", "Archetype", "manifest", "space"],
-  ["Rulership", "dignity", "domain", "Dignity", "", "Quality of fitness (Pancha Tattva)", "manifest", "space"],
-  ["Rulership", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-
-  ["Polarity", "name", "data", "", "", "Sect variant", "manifest", "space"],
-  ["Polarity", "luminary", "domain", "Archetype", "", "Sect luminary", "manifest", "space"],
-  ["Polarity", "description", "data", "", "", "Meaning", "manifest", "space"],
-  ["Polarity", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Polarity", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Condition", "name", "data", "", "", "Condition variant", "manifest", "space"],
-  ["Condition", "description", "data", "", "", "Meaning", "manifest", "space"],
-  ["Condition", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Condition", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-]
-:put field { relation, column => scalar, target, unit, description, phase, dignity }
-
-# ═══════════════════════════════════════════════════════════════════════
-# PILLAR 3 — Structure domains + schema + field + units
-# ═══════════════════════════════════════════════════════════════════════
-
-?[relation, column, scalar, target, unit, description, phase, dignity] <- [
-  ["Type", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["Type", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["Type", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Type", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Scalar", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["Scalar", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["Scalar", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Scalar", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Cardinality", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["Cardinality", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["Cardinality", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Cardinality", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Direction", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["Direction", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["Direction", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Direction", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["field", "relation", "data", "", "", "Relation name", "manifest", "space"],
-  ["field", "column", "data", "", "", "Column name", "manifest", "space"],
-  ["field", "scalar", "domain", "Scalar", "", "What leaf scalar this field carries", "manifest", "space"],
-  ["field", "target", "data", "", "", "Domain name or Measure formula", "manifest", "space"],
-  ["field", "unit", "data", "", "", "Unit domain name", "manifest", "space"],
-  ["field", "description", "data", "", "", "Human-readable description", "manifest", "space"],
-  ["field", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["field", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["schema_entry", "schema", "data", "", "", "Content-addressed schema identifier", "manifest", "space"],
-  ["schema_entry", "name", "data", "", "", "Entry identifier", "manifest", "space"],
-  ["schema_entry", "structure", "domain", "Type", "", "Structural form", "manifest", "space"],
-  ["schema_entry", "ordinal", "int", "L", "PositionUnit", "Position in schema", "manifest", "space"],
-  ["schema_entry", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["schema_entry", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["schema_field", "schema", "data", "", "", "Schema identifier", "manifest", "space"],
-  ["schema_field", "owner", "data", "", "", "Owning entry", "manifest", "space"],
-  ["schema_field", "name", "data", "", "", "Field identifier", "manifest", "space"],
-  ["schema_field", "structure", "domain", "Type", "", "Structural form", "manifest", "space"],
-  ["schema_field", "target", "data", "", "", "Reference", "manifest", "space"],
-  ["schema_field", "ordinal", "int", "L", "PositionUnit", "Capnp ordinal", "manifest", "space"],
-  ["schema_field", "cardinality", "domain", "Cardinality", "", "Field multiplicity", "manifest", "space"],
-  ["schema_field", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["schema_field", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["schema_variant", "schema", "data", "", "", "Schema identifier", "manifest", "space"],
-  ["schema_variant", "owner", "data", "", "", "Owning enum entry", "manifest", "space"],
-  ["schema_variant", "name", "data", "", "", "Variant identifier", "manifest", "space"],
-  ["schema_variant", "ordinal", "int", "L", "PositionUnit", "Capnp discriminant", "manifest", "space"],
-  ["schema_variant", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["schema_variant", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["schema_method", "schema", "data", "", "", "Schema identifier", "manifest", "space"],
-  ["schema_method", "interface", "data", "", "", "Interface identifier", "manifest", "space"],
-  ["schema_method", "name", "data", "", "", "Method identifier", "manifest", "space"],
-  ["schema_method", "ordinal", "int", "L", "PositionUnit", "Method ordinal", "manifest", "space"],
-  ["schema_method", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["schema_method", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["schema_param", "schema", "data", "", "", "Schema identifier", "manifest", "space"],
-  ["schema_param", "interface", "data", "", "", "Interface identifier", "manifest", "space"],
-  ["schema_param", "method", "data", "", "", "Method identifier", "manifest", "space"],
-  ["schema_param", "name", "data", "", "", "Parameter identifier", "manifest", "space"],
-  ["schema_param", "direction", "domain", "Direction", "", "Request or response", "manifest", "space"],
-  ["schema_param", "structure", "domain", "Type", "", "Structural form", "manifest", "space"],
-  ["schema_param", "target", "data", "", "", "Reference", "manifest", "space"],
-  ["schema_param", "ordinal", "int", "L", "PositionUnit", "Parameter ordinal", "manifest", "space"],
-  ["schema_param", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["schema_param", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["measure_unit", "measure", "data", "", "", "Measure formula", "manifest", "space"],
-  ["measure_unit", "unit", "domain", "Domain", "", "Unit domain name", "manifest", "space"],
-  ["measure_unit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["measure_unit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["TimeUnit", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["TimeUnit", "description", "data", "", "", "Description", "manifest", "space"],
-  ["TimeUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["TimeUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["PositionUnit", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["PositionUnit", "description", "data", "", "", "Description", "manifest", "space"],
-  ["PositionUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["PositionUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["CountUnit", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["CountUnit", "description", "data", "", "", "Description", "manifest", "space"],
-  ["CountUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["CountUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["SizeUnit", "name", "data", "", "", "Variant name", "manifest", "space"],
-  ["SizeUnit", "description", "data", "", "", "Description", "manifest", "space"],
-  ["SizeUnit", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["SizeUnit", "dignity", "domain", "Dignity", "", "Epistemological trust", "manifest", "space"],
-
-  ["Name", "name", "data", "", "", "Label name", "manifest", "space"],
-  ["Name", "description", "data", "", "", "Generator correspondence description", "manifest", "space"],
-  ["Name", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["Name", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "space"],
-
-  ["name", "domain", "domain", "Domain", "", "Source domain", "manifest", "space"],
-  ["name", "variant", "data", "", "", "Variant in source domain", "manifest", "space"],
-  ["name", "generator", "domain", "Domain", "", "Generator domain", "manifest", "space"],
-  ["name", "position", "data", "", "", "Position in generator", "manifest", "space"],
-  ["name", "phase", "domain", "Phase", "", "Lifecycle phase", "manifest", "space"],
-  ["name", "dignity", "domain", "Dignity", "", "Quality of fitness", "manifest", "space"],
-]
-:put field { relation, column => scalar, target, unit, description, phase, dignity }
+:put field_type { relation, column => kind, target_domain, unit_domain, description, phase, dignity }
