@@ -1,0 +1,5 @@
+[package]
+name = "sema-core"
+version = "0.1.0"
+edition = "2024"
+description = "Sema Core — four prime generators, ordinal-aligned domains, Name registry"
