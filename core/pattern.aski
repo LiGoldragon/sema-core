@@ -1,0 +1,25 @@
+;; pattern.aski — match pattern domains
+;;
+;; Derived from Pattern.synth, Match.synth.
+
+(Pattern MatchExpr MatchArm Pattern)
+
+
+;; ── Match Expression ────────────────────────────────────────────
+
+{MatchExpr
+  (Target [Option [Box Expr]])
+  (Arms [Vec MatchArm])}
+
+{MatchArm
+  (Patterns [Vec Pattern])
+  (Result [Box Expr])}
+
+
+;; ── Pattern ─────────────────────────────────────────────────────
+
+(Pattern
+  (Variant VariantName)
+  {VariantBind (Variant VariantName) (Binding TypeName)}
+  {OrPattern (Variants [Vec VariantName])}
+  (StringLit String))

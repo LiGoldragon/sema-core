@@ -1,0 +1,49 @@
+;; expr.aski — expression domains
+;;
+;; Derived from Expr*.synth and ExprAtom.synth.
+;; Every expression variant is a domain form.
+
+(Expr Expr FieldInit)
+
+
+;; ── Expression ──────────────────────────────────────────────────
+
+(Expr
+  ;; binary operations (ExprOr..ExprMul)
+  {BinAdd (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinSub (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinMul (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinMod (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinEq (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinNotEq (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinLt (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinGt (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinLtEq (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinGtEq (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinAnd (Left [Box Expr]) (Right [Box Expr]) Span}
+  {BinOr (Left [Box Expr]) (Right [Box Expr]) Span}
+
+  ;; postfix (ExprPostfix)
+  {FieldAccess (Object [Box Expr]) (Field FieldName) Span}
+  {MethodCall (Object [Box Expr]) (Method MethodName) (Args [Vec Expr]) Span}
+  {TryUnwrap (Inner [Box Expr]) Span}
+
+  ;; atoms (ExprAtom)
+  {InstanceRef (Name TypeName) Span}
+  {PathVariant (Type TypeName) (Variant VariantName) Span}
+  {PathMethod (Type TypeName) (Method MethodName) (Args [Vec Expr]) Span}
+  {IntLit (Value I64) Span}
+  {FloatLit (Value F64) Span}
+  {StringLit (Value String) Span}
+  (InlineEval Block)
+  (Match MatchExpr)
+  (Loop Loop)
+  (Iteration Iteration)
+  {StructConstruct (Type TypeName) (Fields [Vec FieldInit]) Span})
+
+
+;; ── Field Initialization ────────────────────────────────────────
+
+{FieldInit
+  (Name FieldName)
+  (Value [Box Expr])}

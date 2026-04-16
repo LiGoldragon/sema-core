@@ -1,0 +1,24 @@
+;; type.aski — type expression domains
+;;
+;; Derived from Type.synth, TypeApplication.synth, GenericParam.synth.
+;; Represents type references in field types, return types,
+;; param types, newtype wrapping, type application.
+
+(Type TypeExpr TypeApplication GenericParam)
+
+
+;; ── Type Expression ─────────────────────────────────────────────
+
+(TypeExpr
+  (Simple TypeName)
+  (Application TypeApplication)
+  (Param TypeParamName)
+  {BoundedParam (Bounds [Vec TypeName])}
+  (InstanceRef TypeApplication))
+
+
+;; ── Type Application ────────────────────────────────────────────
+
+{TypeApplication
+  (Constructor TypeName)
+  (Args [Vec TypeExpr])}

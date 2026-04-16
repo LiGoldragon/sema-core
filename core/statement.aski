@@ -1,0 +1,49 @@
+;; statement.aski — statement domains
+;;
+;; Derived from Statement.synth, Instance.synth, Mutation.synth.
+
+(Statement Statement Instance Mutation Loop Iteration)
+
+
+;; ── Statement ───────────────────────────────────────────────────
+
+(Statement
+  (EarlyReturn [Box Expr])
+  (Loop Loop)
+  (Iteration Iteration)
+  {LocalTypeDecl (Name TypeName) (Type TypeExpr) Span}
+  (Mutation Mutation)
+  (Instance Instance)
+  (Expr [Box Expr]))
+
+
+;; ── Instance ────────────────────────────────────────────────────
+
+{Instance
+  (Name TypeName)
+  (TypeAnnotation [Option TypeExpr])
+  (Value [Box Expr])
+  Span}
+
+
+;; ── Mutation ────────────────────────────────────────────────────
+
+{Mutation
+  (Name TypeName)
+  (Method MethodName)
+  (Args [Vec Expr])
+  Span}
+
+
+;; ── Loop ────────────────────────────────────────────────────────
+
+{Loop
+  (Condition [Option [Box Expr]])
+  (Body [Vec Statement])}
+
+
+;; ── Iteration ───────────────────────────────────────────────────
+
+{Iteration
+  (Source [Box Expr])
+  (Body Block)}

@@ -1,0 +1,36 @@
+;; trait.aski — trait declaration and implementation domains
+;;
+;; Derived from TraitDecl.synth, TraitImpl.synth, TypeImpl.synth,
+;; Signature.synth, Method.synth.
+
+(Trait TraitDeclDef TraitImplDef MethodSig MethodDef)
+
+
+;; ── Trait Declaration ───────────────────────────────────────────
+
+{TraitDeclDef
+  (Name TraitName)
+  (Signatures [Vec MethodSig])
+  Span}
+
+{MethodSig
+  (Name MethodName)
+  (Params [Vec Param])
+  (ReturnType [Option TypeExpr])
+  Span}
+
+
+;; ── Trait Implementation ────────────────────────────────────────
+
+{TraitImplDef
+  (Trait TraitName)
+  (Type TypeName)
+  (Methods [Vec MethodDef])
+  Span}
+
+{MethodDef
+  (Name MethodName)
+  (Params [Vec Param])
+  (ReturnType [Option TypeExpr])
+  (Body MethodBody)
+  Span}
