@@ -1,5 +1,37 @@
 {
   "nodes": {
+    "aski": {
+      "inputs": {
+        "corec": [
+          "corec"
+        ],
+        "crane": [
+          "crane"
+        ],
+        "fenix": [
+          "fenix"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776444291,
+        "narHash": "sha256-vQqJMC4p5ZbH/N4sD/FPStoogCNNKHsUVWgFiMZ+hEE=",
+        "owner": "Criome",
+        "repo": "aski",
+        "rev": "906b4ef70c2ec8b50c97f32ca01ede7295318e6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Criome",
+        "repo": "aski",
+        "type": "github"
+      }
+    },
     "corec": {
       "inputs": {
         "crane": [
@@ -101,6 +133,7 @@
     },
     "root": {
       "inputs": {
+        "aski": "aski",
         "corec": "corec",
         "crane": "crane",
         "fenix": "fenix",

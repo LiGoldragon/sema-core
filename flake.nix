@@ -1,5 +1,5 @@
 {
-  description = "sema-core — rkyv contract types for askic↔semac";
+  description = "sema-core — rkyv contract types for veric↔semac (verified program)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -16,9 +16,17 @@
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
     };
+    aski = {
+      url = "github:Criome/aski";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.fenix.follows = "fenix";
+      inputs.crane.follows = "crane";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.corec.follows = "corec";
+    };
   };
 
-  outputs = { self, nixpkgs, fenix, crane, flake-utils, corec, ... }:
+  outputs = { self, nixpkgs, fenix, crane, flake-utils, corec, aski, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -26,6 +34,7 @@
         craneLib = (crane.mkLib pkgs).overrideToolchain toolchain;
 
         corec-bin = corec.packages.${system}.corec;
+        aski-source = aski.packages.${system}.source;
 
         src = pkgs.lib.cleanSourceWith {
           src = ./.;
@@ -34,25 +43,26 @@
             || (builtins.match ".*\\.aski$" path != null);
         };
 
-        # Run corec on core/*.aski → generated/sema_core.rs
+        # Run corec on source/*.aski → generated/sema_core.rs
         generated = pkgs.runCommand "sema-core-generated" {
           nativeBuildInputs = [ corec-bin ];
         } ''
           mkdir -p generated
-          corec ${./core} generated/sema_core.rs
+          corec ${./source} generated/sema_core.rs
           mkdir -p $out
           cp generated/sema_core.rs $out/
         '';
 
-        # Full source tree with generated types in place.
+        # Full source tree with generated types + aski dependency
         sema-core-source = pkgs.runCommand "sema-core-source" {} ''
           cp -r ${src} $out
           chmod -R +w $out
           mkdir -p $out/generated
           cp ${generated}/sema_core.rs $out/generated/
+          mkdir -p $out/flake-crates
+          cp -r ${aski-source} $out/flake-crates/aski
         '';
 
-        # Build the lib crate (verifies the generated types compile)
         commonArgs = {
           src = sema-core-source;
           pname = "sema-core";
