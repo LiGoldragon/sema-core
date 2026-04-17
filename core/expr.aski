@@ -57,6 +57,7 @@
   ;; path expressions
   {InstanceRef (Name TypeName) Span}
   {SelfRef Span}
+  {BareVariant (Variant VariantName) Span}
   {PathVariant (Type TypeName) (Variant VariantName) Span}
   {PathVariantData (Type TypeName) (Variant VariantName) (Payload [Box Expr]) Span}
 

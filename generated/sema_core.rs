@@ -239,6 +239,10 @@ pub enum Expr {
     SelfRef {
         span: Span,
     },
+    BareVariant {
+        variant: VariantName,
+        span: Span,
+    },
     PathVariant {
         typ: TypeName,
         variant: VariantName,
