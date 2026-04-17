@@ -4,6 +4,9 @@
 // veric serializes, semac/domainc/rsc/askid deserialize.
 //
 // Run `corec source generated/sema_core.rs` to regenerate.
+// Domain definitions are in source/*.core.
+
+pub use aski;
 
 use rkyv::{Archive, Serialize, Deserialize};
 
