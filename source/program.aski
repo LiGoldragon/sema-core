@@ -1,0 +1,88 @@
+;; program.aski — veric output types
+;;
+;; The verified program: all modules + resolution indices.
+;; veric serializes, semac/domainc/rsc/askid deserialize.
+;;
+;; Indices are sorted Vecs — binary search for O(log n).
+;; No HashMap needed. Clean rkyv serialization.
+
+(Program TypeKind
+         TypeLocation TraitLocation
+         TypeEntry TraitEntry ModuleEntry
+         ImplEntry GenericEntry
+         ResolvedImport ImportResolution
+         ResolutionTable)
+
+
+;; ── Location types ──────────────────────────────────────────
+;; Where a definition lives: module index + position
+
+(TypeKind Enum Struct Newtype Const)
+
+{TypeLocation
+  (Module U32)
+  (Kind TypeKind)
+  (Index U32)}
+
+{TraitLocation
+  (Module U32)
+  (DeclIndex U32)}
+
+
+;; ── Index entries ───────────────────────────────────────────
+;; Sorted by Name for binary search lookup
+
+{TypeEntry
+  (Name String)
+  (Location TypeLocation)}
+
+{TraitEntry
+  (Name String)
+  (Location TraitLocation)}
+
+{ModuleEntry
+  (Name String)
+  (Index U32)}
+
+
+;; ── Trait-to-impl mapping ───────────────────────────────────
+;; Which types implement which traits
+
+{ImplEntry
+  (Trait TraitLocation)
+  (Type TypeLocation)
+  (ImplModule U32)
+  (ImplIndex U32)}
+
+
+;; ── Generic arity ───────────────────────────────────────────
+;; How many type parameters a definition takes
+
+{GenericEntry
+  (Location TypeLocation)
+  (Arity U32)}
+
+
+;; ── Import resolution ───────────────────────────────────────
+;; Per-module resolved imports (veric already computed these)
+
+{ResolvedImport
+  (Name String)
+  (Location TypeLocation)}
+
+{ImportResolution
+  (SourceModule U32)
+  (Resolved [Vec ResolvedImport])}
+
+
+;; ── The resolution table ────────────────────────────────────
+;; Everything veric computed during verification.
+;; Sorted vecs — downstream tools do binary search.
+
+{ResolutionTable
+  (Modules [Vec ModuleEntry])
+  (Types [Vec TypeEntry])
+  (Traits [Vec TraitEntry])
+  (Impls [Vec ImplEntry])
+  (Generics [Vec GenericEntry])
+  (Imports [Vec ImportResolution])}
