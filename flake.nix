@@ -1,5 +1,5 @@
 {
-  description = "sema-core — rkyv contract types for veric↔semac (verified program)";
+  description = "veri-core — rkyv contract types for veric↔semac (verified program)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -43,48 +43,48 @@
             || (builtins.match ".*\\.core$" path != null);
         };
 
-        # Run corec on source/*.core → generated/sema_core.rs
-        generated = pkgs.runCommand "sema-core-generated" {
+        # Run corec on source/*.core → generated/veri_core.rs
+        generated = pkgs.runCommand "veri-core-generated" {
           nativeBuildInputs = [ corec-bin ];
         } ''
           mkdir -p generated
-          corec ${./source} generated/sema_core.rs
+          corec ${./source} generated/veri_core.rs
           mkdir -p $out
-          cp generated/sema_core.rs $out/
+          cp generated/veri_core.rs $out/
         '';
 
         # Full source tree with generated types + aski-core dependency
-        sema-core-source = pkgs.runCommand "sema-core-source" {} ''
+        veri-core-source = pkgs.runCommand "veri-core-source" {} ''
           cp -r ${src} $out
           chmod -R +w $out
           mkdir -p $out/generated
-          cp ${generated}/sema_core.rs $out/generated/
+          cp ${generated}/veri_core.rs $out/generated/
           mkdir -p $out/flake-crates
           cp -r ${aski-core-source} $out/flake-crates/aski-core
         '';
 
         commonArgs = {
-          src = sema-core-source;
-          pname = "sema-core";
+          src = veri-core-source;
+          pname = "veri-core";
           version = "0.17.0";
         };
 
         cargoArtifacts = craneLib.buildDepsOnly commonArgs;
 
-        sema-core-lib = craneLib.buildPackage (commonArgs // {
+        veri-core-lib = craneLib.buildPackage (commonArgs // {
           inherit cargoArtifacts;
         });
 
       in {
         packages = {
-          default = sema-core-source;
-          source = sema-core-source;
-          lib = sema-core-lib;
+          default = veri-core-source;
+          source = veri-core-source;
+          lib = veri-core-lib;
           inherit generated;
         };
 
         checks = {
-          lib-build = sema-core-lib;
+          lib-build = veri-core-lib;
         };
 
         devShells.default = craneLib.devShell {

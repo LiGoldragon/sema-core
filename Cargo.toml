@@ -1,12 +1,12 @@
 [package]
-name = "sema-core"
+name = "veri-core"
 version = "0.17.0"
 edition = "2021"
 authors = ["Li Goldragon <li@goldragon.criome.net>"]
-description = "sema-core — rkyv contract types for veric↔semac (verified program)"
+description = "veri-core — rkyv contract types for veric↔semac (verified program)"
 
 [lib]
-name = "sema_core"
+name = "veri_core"
 path = "src/lib.rs"
 
 [dependencies]

@@ -1,9 +1,9 @@
-// sema-core — the rkyv contract types for veric→semac.
+// veri-core — the rkyv contract types for veric→semac.
 //
 // Verified program: Vec<ModuleDef> + ResolutionTable.
 // veric serializes, semac/domainc/rsc/askid deserialize.
 //
-// Run `corec source generated/sema_core.rs` to regenerate.
+// Run `corec source generated/veri_core.rs` to regenerate.
 // Domain definitions are in source/*.core.
 
 pub use aski_core;
@@ -25,4 +25,4 @@ pub struct Program {
 
 // ── Generated resolution types ──────────────────────────
 
-include!("../generated/sema_core.rs");
+include!("../generated/veri_core.rs");
