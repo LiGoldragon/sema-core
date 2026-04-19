@@ -44,15 +44,54 @@ Key concepts (planned):
   content. semac/domainc/rsc consume these directly, no string
   lookups.
 
-## Current State (pre-redesign)
+## ⚠️ Current State: STALE — program.core needs D6 redesign
+
+**Why it's stale:**
 
 `source/program.core` still has the pre-v0.18 resolution-table shape:
 `TypeLocation`, `ModuleEntry`, `TraitEntry`, `ResolvedImport`,
-`ImportResolution`, `ResolutionTable`. This WORKS with minimum
-updates (`aski_core::ModuleDef` → `Module`) but doesn't reflect
-the D6 intent.
+`ImportResolution`, `ResolutionTable`. This shape is from before
+aski-core's v0.18 redesign and doesn't match the D6 post-resolution
+intent (parallel typed entities with `EntityRef` absolute references
+and per-entity `relates_to` indices).
 
-**Next work: rewrite program.core to the D6 shape.**
+veri-core currently BUILDS against aski-core v0.20 (minimum fix
+applied at v0.18 — `ModuleDef` → `Module` reference only). But the
+shape is obsolete by design, not just by type names. It does not
+serve the D6 architecture.
+
+**How to fix:**
+
+Rewrite `source/program.core` to the D6 shape described below.
+This can be done in parallel with askic-assemble + askic work, but
+is better grounded once askic produces real output so you know what
+veric actually has to work with.
+
+**Expected outcome:**
+
+```
+{Program (Modules [Vec Module])}
+
+;; Module is a parallel type to aski-core::Module but with resolved refs
+{Module
+  (Name ModuleName)
+  (Enums [Vec Enum])
+  (Structs [Vec Struct])
+  ...
+  (RelatesTo [Vec EntityRef])}
+
+;; Every entity carries its own reference list
+{Enum
+  (Name EnumName)
+  (Visibility Visibility)  ;; resolved from askic's @ sigil
+  (Children [Vec EnumChild])
+  (RelatesTo [Vec EntityRef])}
+
+{EntityRef (Module u32) (Kind EntityKind) (Index u32)}
+```
+
+When this shape lands, veric can be ported and veri-core's D6
+intent becomes the operational contract.
 
 ## Files
 
